@@ -1,7 +1,7 @@
 # JavaProjects
 
-[EN] If you're going to use my code in any of your projects, credit me. 
-[PT-BR] Se você for usar meu código em algum de seus projetos, me dê credito.
-[ES] Si vas a usar mi código en alguno de tus proyectos, dame crédito.
+[EN] Feel free to use my code in your projects! Just give me the due credits.
+[PT-BR] Sinta-se livre para utilizar meu código em seus projetos! Só me dê os devidos créditos, por favor.
+
 
 
