@@ -157,6 +157,7 @@ public class BibliotecaOS {
                         String opcao2 = "";
                         do {
                             System.out.println("\n===============================\n\tLista de Livros\n===============================\n");
+                            System.out.printf("Página %d:\n\n", ((max_index + 1) / 5));
                             for (int i = min_index; i <= max_index; i++) {
                                 try {
                                     System.out.printf("[%d] - %s\n", i, listaLivros.get(i).getNomeLivro());
@@ -169,13 +170,15 @@ public class BibliotecaOS {
                             System.out.println("\nInsira... \n\n...\"I\" para acessar as informações de um livro pelo ID.\n...\"A\" para ir para a página anterior (se possível).\n...\"D\" para ir para a próxima página\n...ou \"S\" para voltar ao menu principal");
                             System.out.print("\n> ");
                             opcao2 = scanner.next();
-                            if (opcao2.toUpperCase().trim().equals("D")) {
+                            if (opcao2.toUpperCase().trim().equals("I")) {
+                            }else if (opcao2.toUpperCase().trim().equals("D")) {
                                 //PRÓXIMA PÁGINA
                                 if (listaLivros.size() > max_index) {
                                     System.out.println(min_index);
                                     System.out.println(max_index);
                                     min_index += 5;
                                     max_index += 5;
+                                    System.out.printf("Página %d:\n\n", ((max_index + 1) / 5));
                                     for (int i = min_index; i <= max_index; i++) {
                                         try {
                                             System.out.printf("[%d] - %s\n", i, listaLivros.get(i).getNomeLivro());
@@ -188,12 +191,13 @@ public class BibliotecaOS {
                                     System.out.println("ERRO: Não foi possível ir para a próxima página.");
                                 }
                             } else if (opcao2.toUpperCase().trim().equals("A")) {
-                                //PRÓXIMA PÁGINA
+                                //PÁGINA ANTERIOR
                                 if (min_index > 0) {
                                     System.out.println(min_index);
                                     System.out.println(max_index);
                                     min_index -= 5;
                                     max_index -= 5;
+                                    System.out.printf("Página %d:\n\n", ((max_index + 1) / 5));
                                     for (int i = min_index; i <= max_index; i++) {
                                         try {
                                             System.out.printf("[%d] - %s\n", i, listaLivros.get(i).getNomeLivro());
@@ -206,8 +210,10 @@ public class BibliotecaOS {
                                     System.out.println("ERRO: Você já está na primeira página!");
                                 }
                             } else if (opcao2.toUpperCase().trim().equals("S")) {
+                                //SAIR
                                 break;
                             } else {
+                                //BRUH
                                 System.out.println("ERRO: Opção inválida!");
                             }
                         } while (true);
