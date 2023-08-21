@@ -1,4 +1,4 @@
-package PTBR.CadastroLivrosRaiz;
+package PTBR.BibliotecaOSPasta;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -40,7 +40,6 @@ public class BibliotecaOS {
                     } while (true);
                     scanner.nextLine();
                     break;
-                //Cadastro
                 case 1:
                     if (listaLivros.size() < 1000) {
                         //Nome
@@ -151,9 +150,17 @@ public class BibliotecaOS {
                         System.out.println();
                         opcao = 0;
                     }
+                    break;
+                case 7:
+                    break;
+                default:
+                    System.out.println("ERRO: Opção inválida!");
+                    opcao = 0;
             }
-               
-            
+            if (opcao == 7) {
+                System.out.println("Até mais!");
+                break;
+            }
         } while (true);
     }
     public static void esperar(int ms) {

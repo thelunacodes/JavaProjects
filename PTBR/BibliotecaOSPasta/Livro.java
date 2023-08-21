@@ -1,4 +1,4 @@
-package PTBR.CadastroLivrosRaiz;
+package PTBR.BibliotecaOSPasta;
 
 public class Livro {
     String nomeLivro, autor, editora, CDD, ISBN, secao;
