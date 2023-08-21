@@ -11,8 +11,13 @@ public class BibliotecaOS {
         int edicao = 0, anoPublicacao = 0, prateleira = 0, opcao = 0;
         ArrayList<Livro> listaLivros = new ArrayList<Livro>();
 
-        
-        //(Nintendo) Switch
+        // LEMBRETES:
+        //
+        // 1- Navegação da lista de livros
+        //
+
+
+        //Navegação do App
         do {
             switch (opcao) {
                 //Intro
@@ -131,20 +136,32 @@ public class BibliotecaOS {
                         opcao = 0;
                     } else {
                        System.out.println("ERRO: A lista está cheia!");
+                       opcao = 0;
                     }
                     break;
                 case 3:
                     if (listaLivros.size() == 0) {
                         System.out.println("Não há nenhum livro cadastrado!");
+                        esperar(2000);
+                        opcao = 0;
                     } else {
                         for (int i = 0; i < listaLivros.size(); i++) {
-                            System.out.printf("==================================================\n\t\t[Livro %d#]\n\n Nome do Livro: %s\n%s\nAutor: %s\nEditora: %s\nCDD: %s\nISBN: %s\nEdição: %d°\nAno de Publicação: %d\nSeção: %s\nPrateleira: %d",i,nomeLivro,autor,editora,CDD,ISBN,edicao,anoPublicacao,secao,prateleira);
+                            System.out.printf("==================================================\n\t\t[Livro %d#]\n\nNome do Livro: %s\nAutor: %s\nEditora: %s\nCDD: %s\nISBN: %s\nEdição: %d°\nAno de Publicação: %d\nSeção: %s\nPrateleira: %d",i,nomeLivro,autor,editora,CDD,ISBN,edicao,anoPublicacao,secao,prateleira);
                         }
+                        System.out.println();
                         opcao = 0;
                     }
             }
                
             
         } while (true);
+    }
+    public static void esperar(int ms) {
+        try {
+            Thread.sleep(ms);
+        } 
+        catch(InterruptedException e) {
+            System.out.println(e);
+        }
     }
 }
