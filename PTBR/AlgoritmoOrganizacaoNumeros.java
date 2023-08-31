@@ -28,7 +28,7 @@ public class AlgoritmoOrganizacaoNumeros {
         } 
         System.out.println("========================================\n\tAlgoritmo de Organização\n\t     de Números v1.0\n========================================\n");
         //Lista Original
-        System.out.println("Lista original: \n");
+        System.out.println("Lista original:");
         for (int num : sequencia) {
             System.out.print(num + " ");
         }
@@ -63,7 +63,7 @@ public class AlgoritmoOrganizacaoNumeros {
                 tentativas++;
             } while (!listaEstaOrganizadaCrescente(sequencia)); 
             //Exibir lista organizada
-            System.out.println("\nLista organizada em ordem crescente depois de " + tentativas + " tentativas: \n");
+            System.out.println("\nLista organizada em ordem crescente depois de " + tentativas + " tentativas:");
             for (int num : sequencia) {
                 System.out.print(num + " ");
             }
@@ -84,7 +84,7 @@ public class AlgoritmoOrganizacaoNumeros {
                 tentativas++;
             } while (!listaEstaOrganizadaDecrescente(sequencia));
             //Exibir lista organizada
-            System.out.println("\nLista organizada em ordem decrescente depois de " + tentativas + " tentativas: \n");
+            System.out.println("\nLista organizada em ordem decrescente depois de " + tentativas + " tentativas:");
             for (int num : sequencia) {
                 System.out.print(num + " ");
             }
