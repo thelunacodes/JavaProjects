@@ -2,6 +2,8 @@ package PTBR;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class AlgoritmoOrganizacaoNumeros {
     public static void main(String[] args) {
@@ -15,6 +17,7 @@ public class AlgoritmoOrganizacaoNumeros {
         
         ArrayList<Integer> sequencia = new ArrayList<Integer>(); //lista
         Random random = new Random(); //instância de random
+        Scanner scanner = new Scanner(System.in); //instância de scanner
         final int TAMANHO_LISTA = 20; //tamanho da lista
         final int VAL_MAX = 100; //valor máximo gerado
         int tentativas = 0, n1, n2, temp; //atributos
@@ -30,30 +33,85 @@ public class AlgoritmoOrganizacaoNumeros {
             System.out.print(num + " ");
         }
         System.out.println(" \n");
-        //Fazer a troca se o valor j for maior que o próximo valor
+        //Crescente ou decresente?
+        int opcao = 0;
+        System.out.println("Insira o número correspondente à opção desejada: \n\n[1] Crescente\n[2] Decrescente\n[3] Sair\n");
         do {
-            for (int j = 0; j < sequencia.size() - 1; j++) {
-                if (sequencia.get(j) > sequencia.get(j+1)) {
-                    n1 = sequencia.get(j);
-                    n2 = sequencia.get(j+1);
-                    temp = n1;
-                    sequencia.set(j, n2);
-                    sequencia.set(j+1, temp);
-                }
+            do {
+            try {
+                System.out.print("> ");
+                opcao = scanner.nextInt();
+                break;
             }
-            tentativas++;
-        } while (!listaEstaOrganizada(sequencia));
-        //Exibir lista organizada
-        System.out.println("Lista organizada depois de " + tentativas + " tentativas: \n");
-        for (int num : sequencia) {
-            System.out.print(num + " ");
+            catch (InputMismatchException e) {
+                System.out.println("ERRO: Apenas números, por favor.");
+                scanner.next();
+            }
+        } while (true);
+        if (opcao == 1) {
+            //Fazer a troca se o valor j for maior que o próximo valor
+            do {
+                for (int j = 0; j < sequencia.size() - 1; j++) {
+                    if (sequencia.get(j) > sequencia.get(j+1)) {
+                        n1 = sequencia.get(j);
+                        n2 = sequencia.get(j+1);
+                        temp = n1;
+                        sequencia.set(j, n2);
+                        sequencia.set(j+1, temp);
+                    }
+                }
+                tentativas++;
+            } while (!listaEstaOrganizadaCrescente(sequencia)); 
+            //Exibir lista organizada
+            System.out.println("\nLista organizada em ordem crescente depois de " + tentativas + " tentativas: \n");
+            for (int num : sequencia) {
+                System.out.print(num + " ");
+            }
+            System.out.println(" \n");  
+            break;
+        } else if (opcao == 2) {
+            //Fazer a troca se o valor j for maior que o próximo valor
+            do {
+                for (int j = 0; j < sequencia.size() - 1; j++) {
+                    if (sequencia.get(j) < sequencia.get(j+1)) {
+                        n1 = sequencia.get(j);
+                        n2 = sequencia.get(j+1);
+                        temp = n1;
+                        sequencia.set(j, n2);
+                        sequencia.set(j+1, temp);
+                    }
+                }
+                tentativas++;
+            } while (!listaEstaOrganizadaDecrescente(sequencia));
+            //Exibir lista organizada
+            System.out.println("\nLista organizada em ordem decrescente depois de " + tentativas + " tentativas: \n");
+            for (int num : sequencia) {
+                System.out.print(num + " ");
+            }
+            System.out.println(" \n"); 
+            break;      
+        } else if (opcao == 3) {
+            System.out.println("Tchau!");
+            break;
+        } else {
+            System.out.println("Opção inválida!");
         }
-        System.out.println(" \n");
+        } while (true);
+        scanner.close();
     }
-    //Método que checa se a lista foi organizada
-    public static boolean listaEstaOrganizada(ArrayList<Integer> arraylist) {
+    //Método que checa se a lista foi organizada (ordem crescente)
+    public static boolean listaEstaOrganizadaCrescente(ArrayList<Integer> arraylist) {
         for (int i = 0; i < arraylist.size() - 1; i++) {
             if (arraylist.get(i) > arraylist.get(i+1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    //Método que checa se a lista foi organizada (ordem decrescente)
+    public static boolean listaEstaOrganizadaDecrescente(ArrayList<Integer> arraylist) {
+        for (int i = 0; i < arraylist.size() - 1; i++) {
+            if (arraylist.get(i) < arraylist.get(i+1)) {
                 return false;
             }
         }
