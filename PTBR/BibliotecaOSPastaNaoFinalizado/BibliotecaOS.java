@@ -16,13 +16,15 @@ public class BibliotecaOS {
 
         //atributos gerais
         Scanner scanner = new Scanner(System.in);
-        String nomeLivro = "", autor = "", editora = "", CDD = "", ISBN = "", secao = "";
-        int edicao = 0, anoPublicacao = 0, prateleira = 0, opcao1 = 0;
+        String nomeLivro = "", autorLivro = "", editoraLivro = "", CDDLivro = "", ISBNLivro = "", secaoLivro = "";
+        String nomeRevista = "", autorRevista = "", editoraRevista = "", CDDRevista = "", ISBNRevista = "", secaoRevista = "", ISSNRevista = "";
+        int edicaoLivro = 0, anoPublicacaoLivro = 0, prateleiraLivro = 0, opcao1 = 0;
+        int edicaoRevista = 0, anoPublicacaoRevista = 0, prateleiraRevista = 0;
         ArrayList<Livro> listaLivros = new ArrayList<Livro>();
+        ArrayList<Revista> listaRevistas = new ArrayList<Revista>();
 
         //LEMBRETES:
         //
-        //1- Criar algoritmo de organização em ordem alfabética
         //2- Cadastro Revista
         //3- Lista Revista
         //4- Procurar Revista
@@ -42,6 +44,9 @@ public class BibliotecaOS {
             listaLivros.add(new Livro("Heartstopper","Alice Oseman e Guilherme Miranda","Seguinte", "741.5", "978-8555341618", 1, 2021, "Drama, Romance, LGBT, Comédia", 17));
             
             listaLivros.add(new Livro("Percy Jackson: O Ladrão de Raios","Rick Riordan","Intrínseca", "028.5", "978-8580575392", 1, 2014, "Ação, Aventura, Fantasia", 4));
+
+            listaRevistas.add(new Revista("Veja", "Roberto Civita", "Abril", "123", "978-8523203245", 3000, 2021, "política, cultura e econômia", 7, "0100-7122"));
+
         //Navegação do App
         do {
             switch (opcao1) {
@@ -49,7 +54,7 @@ public class BibliotecaOS {
                     //Intro
                     System.out.println("\n============================\n\tBibliotecaOS\n\t    v1.0\n============================");
                     System.out.println("\nBem-vindo(a), usuário(a)! Insira o número correspondente à opção desejada:");
-                    System.out.println("\n[1] Cadastrar Livro \n[2] Cadastrar Revista (em breve)\n[3] Procurar Livro por palavra-chave \n[4] Procurar Revista por palavra-chave (em breve)\n[5] Listar livros \n[6] Listar revistas (em breve)\n[7] Espaço livre (livro) \n[8] Espaço livro (revista) (em breve)\n[9] Créditos\n[10] Sair\n");
+                    System.out.println("\n[1] Cadastrar Livro \n[2] Cadastrar Revista\n[3] Procurar Livro por palavra-chave \n[4] Procurar Revista por palavra-chave\n[5] Listar livros \n[6] Listar revistas\n[7] Espaço livre\n[8] Créditos\n[9] Sair\n");
                     //Input
                     opcao1 = verificarInt("> ");
                     break;
@@ -60,23 +65,56 @@ public class BibliotecaOS {
                         //Nome
                         nomeLivro = verificarString("Insira o nome do livro: ");
                         //Autor
-                        autor = verificarString("Insira o autor do livro: ");
+                        autorLivro = verificarString("Insira o autor do livro: ");
                         //Editora
-                        editora = verificarString("Insira a editora do livro: ");
+                        editoraLivro = verificarString("Insira a editora do livro: ");
                         //CDD
-                        CDD = verificarString("Insira o CDD do livro: ");
+                        CDDLivro = verificarString("Insira o CDD do livro: ");
                         //ISBN
-                        ISBN = verificarString("Insira o ISBN do livro: ");
+                        ISBNLivro = verificarString("Insira o ISBN do livro: ");
                         //Edição
-                        edicao = verificarInt("Insira a edição do livro: ");
+                        edicaoLivro = verificarInt("Insira a edição do livro: ");
                         //Ano de Publicação
-                        anoPublicacao = verificarInt("Insira o ano de publicação do livro: ");
+                        anoPublicacaoLivro = verificarInt("Insira o ano de publicação do livro: ");
                         //Seção
-                        secao = verificarString("Insira o nome da seção onde está o livro: ");
+                        secaoLivro = verificarString("Insira o nome da seção onde está o livro: ");
                         //Prateleira
-                        prateleira = verificarInt("Insira o número da prateleira onde está o livro: ");
+                        prateleiraLivro = verificarInt("Insira o número da prateleira onde está o livro: ");
                         //Adicionar à lista
-                        listaLivros.add(new Livro(nomeLivro, autor, editora, CDD, ISBN, edicao, anoPublicacao, secao, prateleira));
+                        listaLivros.add(new Livro(nomeLivro, autorLivro, editoraLivro, CDDLivro, ISBNLivro, edicaoLivro, anoPublicacaoLivro, secaoLivro, prateleiraLivro));
+                        opcao1 = 0;
+                    } else {
+                       System.out.println("ERRO: A lista está cheia!");
+                       esperar(1500);
+                       opcao1 = 0;
+                    }
+                    break;
+                case 2:
+                    //Cadastrar revista
+                    if (listaRevistas.size() < 1000) {
+                        System.out.println("\n===================================\n\tCadastro de Revistas\n===================================\n");
+                        //Nome
+                        nomeRevista = verificarString("Insira o nome da revista: ");
+                        //Autor
+                        autorRevista = verificarString("Insira o autor da revista: ");
+                        //Editora
+                        editoraRevista = verificarString("Insira a editora da revista: ");
+                        //CDD
+                        CDDRevista = verificarString("Insira o CDD da revista: ");
+                        //ISBN
+                        ISBNRevista = verificarString("Insira o ISBN da revista: ");
+                        //ISSN
+                        ISSNRevista = verificarString("Insira o ISSN da revista: ");
+                        //Edição
+                        edicaoRevista = verificarInt("Insira a edição da revista: ");
+                        //Ano de Publicação
+                        anoPublicacaoRevista = verificarInt("Insira o ano de publicação da revista: ");
+                        //Seção
+                        secaoRevista = verificarString("Insira o nome da seção onde está a revista: ");
+                        //Prateleira
+                        prateleiraRevista = verificarInt("Insira o número da prateleira onde está a revista: ");
+                        //Adicionar à lista
+                        listaRevistas.add(new Revista(nomeRevista, autorRevista, editoraRevista, CDDRevista, ISBNRevista, edicaoRevista, anoPublicacaoRevista, secaoRevista, prateleiraRevista, ISSNRevista));
                         opcao1 = 0;
                     } else {
                        System.out.println("ERRO: A lista está cheia!");
@@ -91,7 +129,7 @@ public class BibliotecaOS {
                         ArrayList<Livro> listaFiltrada = new ArrayList<Livro>();
                         String atributoString = "";
 
-                        System.out.println("\n=============================\n\tFiltrar Lista\n=============================\n\n[1] - Nome do Livro\n[2] - Autor\n[3] - Editora\n[4] - CDD\n[5] - ISBN\n[6] - Edição\n[7] - Ano de Publicação\n[8] - Seção\n[9] - Número da Prateleira\n[10] - Sair\n");
+                        System.out.println("\n=============================\n\tFiltrar Livros\n=============================\n\n[1] - Nome\n[2] - Autor\n[3] - Editora\n[4] - CDD\n[5] - ISBN\n[6] - Edição\n[7] - Ano de Publicação\n[8] - Seção\n[9] - Número da Prateleira\n[10] - Sair\n");
                         opcao2 = verificarInt("\n> ");
                         //FILTRAR POR NOME
                         if (opcao2 == 1 ) { 
@@ -99,9 +137,9 @@ public class BibliotecaOS {
                             atributoString = atributoString.toUpperCase().replace(" ","");
                             //System.out.println(atributoString);
                             for (int i = 0; i < listaLivros.size(); i++) {
-                                //System.out.println(listaLivros.get(i).getNomeLivro().toUpperCase().trim());
-                                if (listaLivros.get(i).getNomeLivro().toUpperCase().replace(" ","").contains(atributoString)) {
-                                    //System.out.println(listaLivros.get(i).getNomeLivro().toUpperCase().trim().contains(atributoString));
+                                //System.out.println(listaLivros.get(i).getNome().toUpperCase().trim());
+                                if (listaLivros.get(i).getNome().toUpperCase().replace(" ","").contains(atributoString)) {
+                                    //System.out.println(listaLivros.get(i).getNome().toUpperCase().trim().contains(atributoString));
                                     listaFiltrada.add(listaLivros.get(i));
                                 }
                             }
@@ -111,7 +149,7 @@ public class BibliotecaOS {
                                 esperar(1500);
                             } else {
                                 for (int j = 0; j < listaFiltrada.size(); j++) {
-                                    System.out.printf("%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNomeLivro());
+                                    System.out.printf("%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNome());
                                 }
                                 listaFiltrada.clear();
                                 esperar(1500);
@@ -177,7 +215,7 @@ public class BibliotecaOS {
                                 esperar(1500);
                             } else {
                                 for (int j = 0; j < listaFiltrada.size(); j++) {
-                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNomeLivro());
+                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNome());
                                 }
                                 listaFiltrada.clear();
                                 esperar(1500);
@@ -199,7 +237,7 @@ public class BibliotecaOS {
                                 esperar(1500);
                             } else {
                                 for (int j = 0; j < listaFiltrada.size(); j++) {
-                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNomeLivro());
+                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNome());
                                 }
                                 listaFiltrada.clear();
                                 esperar(1500);
@@ -220,7 +258,7 @@ public class BibliotecaOS {
                                 esperar(1500);
                             } else {
                                 for (int j = 0; j < listaFiltrada.size(); j++) {
-                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNomeLivro());
+                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNome());
                                 }
                                 listaFiltrada.clear();
                                 esperar(1500);
@@ -241,7 +279,7 @@ public class BibliotecaOS {
                                 esperar(1500);
                             } else {
                                 for (int j = 0; j < listaFiltrada.size(); j++) {
-                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNomeLivro());
+                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNome());
                                 }
                                 listaFiltrada.clear();
                                 esperar(1500);
@@ -263,7 +301,7 @@ public class BibliotecaOS {
                                 esperar(1500);
                             } else {
                                 for (int j = 0; j < listaFiltrada.size(); j++) {
-                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNomeLivro());
+                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNome());
                                 }
                                 listaFiltrada.clear();
                                 esperar(1500);
@@ -284,9 +322,224 @@ public class BibliotecaOS {
                                 esperar(1500);
                             } else {
                                 for (int j = 0; j < listaFiltrada.size(); j++) {
-                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNomeLivro());
+                                    System.out.printf("\n%d - %s\n", listaLivros.indexOf(listaFiltrada.get(j)), listaFiltrada.get(j).getNome());
                                 }
                                 listaFiltrada.clear();
+                                esperar(1500);
+                            }
+                        //SAIR
+                        } else if (opcao2 == 10) {
+                            opcao1 = 0;
+                            break;
+                        } else {
+                            System.out.println("ERRO: Opção inválida!");
+                        }
+                    } while(true);
+                    break;
+                case 4:
+                //Filtrar Revistas
+                    do {
+                        int opcao2 = 0;
+                        int atributoInt = 0;
+                        ArrayList<Revista> listaFiltradaRevista = new ArrayList<Revista>();
+                        String atributoString = "";
+
+                        System.out.println("\n=============================\n\tFiltrar Revistas\n=============================\n\n[1] - Nome\n[2] - Autor\n[3] - Editora\n[4] - CDD\n[5] - ISBN\n[6] - Edição\n[7] - Ano de Publicação\n[8] - Seção\n[9] - Número da Prateleira\n[10] - Sair\n");
+                        opcao2 = verificarInt("\n> ");
+                        //FILTRAR POR NOME
+                        if (opcao2 == 1 ) { 
+                            atributoString = verificarString("Insira o nome da revista: ");
+                            atributoString = atributoString.toUpperCase().replace(" ","");
+                            //System.out.println(atributoString);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getNome().toUpperCase().trim());
+                                if (listaRevistas.get(i).getNome().toUpperCase().replace(" ","").contains(atributoString)) {
+                                    //System.out.println(listaRevistas.get(i).getNome().toUpperCase().trim().contains(atributoString));
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getNome());
+                                }
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            }
+                        //FILTRAR POR AUTOR   
+                        } else if (opcao2 == 2) {
+                            atributoString = verificarString("Insira o nome do autor: ");
+                            atributoString = atributoString.toUpperCase().replace(" ","");
+                            //System.out.println(atributoString);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getAutor().toUpperCase().replace(" ",""));
+                                if (listaRevistas.get(i).getAutor().toUpperCase().replace(" ","").contains(atributoString)) {           
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("\n%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getAutor());
+                                }
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            }
+                        //FILTRAR POR EDITORA
+                        } else if (opcao2 == 3) {
+                            atributoString = verificarString("Insira o nome da editora: ");
+                            atributoString = atributoString.toUpperCase().replace(" ","");
+                            //System.out.println(atributoString);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getEditora().toUpperCase().replace(" ",""));
+                                if (listaRevistas.get(i).getEditora().toUpperCase().replace(" ","").contains(atributoString)) {           
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("\n%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getEditora());
+                                }
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            }
+                        //FILTRAR POR CDD
+                        } else if (opcao2 == 4) {
+                            atributoString = verificarString("Insira o CDD: ");
+                            atributoString = atributoString.toUpperCase().replace(" ","");
+                            //System.out.println(atributoString);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getCDD().toUpperCase().replace(" ",""));
+                                if (listaRevistas.get(i).getCDD().toUpperCase().replace(" ","").contains(atributoString)) {           
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("\n%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getNome());
+                                }
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            }
+                        //FILTRAR POR ISBN
+                        } else if (opcao2 == 5) {
+                            atributoString = verificarString("Insira o ISBN: ");
+                            atributoString = atributoString.toUpperCase().replace(" ","");
+                            //System.out.println(atributoString);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getISBN().toUpperCase().replace(" ",""));
+                                if (listaRevistas.get(i).getISBN().toUpperCase().replace(" ","").contains(atributoString)) {           
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("\n%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getNome());
+                                }
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            }
+                        //FILTRAR POR EDIÇÃO
+                        } else if (opcao2 == 6) {
+                            atributoInt = verificarInt("Insira a edição: ");
+                            //System.out.println(atributoInt);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getEdicao());
+                                if (listaRevistas.get(i).getEdicao() == atributoInt) {           
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("\n%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getNome());
+                                }
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            }
+                        //FILTRAR POR ANO DE PUBLICAÇÃO
+                        } else if (opcao2 == 7) {
+                            atributoInt = verificarInt("Insira o ano: ");
+                            //System.out.println(atributoInt);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getAnoPublicacao().toUpperCase().replace(" ",""));
+                                if (listaRevistas.get(i).getAnoPublicacao() == atributoInt) {           
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("\n%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getNome());
+                                }
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            }
+                        //FILTRAR POR SEÇÃO
+                        } else if (opcao2 == 8) {
+                            atributoString = verificarString("Insira a seção: ");
+                            atributoString = atributoString.toUpperCase().replace(" ","");
+                            //System.out.println(atributoString);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getSecao().toUpperCase().replace(" ",""));
+                                if (listaRevistas.get(i).getSecao().toUpperCase().replace(" ","").contains(atributoString)) {           
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("\n%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getNome());
+                                }
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            }
+                        //FILTRAR POR NÚMERO DE PRATELEIRA
+                        } else if (opcao2 == 9) {
+                            atributoInt = verificarInt("Insira o número da prateleira: ");
+                            //System.out.println(atributoInt);
+                            for (int i = 0; i < listaRevistas.size(); i++) {
+                                //System.out.println(listaRevistas.get(i).getPrateleira().toUpperCase().replace(" ",""));
+                                if (listaRevistas.get(i).getPrateleira() == atributoInt) {           
+                                    listaFiltradaRevista.add(listaRevistas.get(i));
+                                }
+                            }
+                            if (listaFiltradaRevista.size() == 0) {
+                                System.out.println("ERRO: Nenhum item encontrado.");
+                                listaFiltradaRevista.clear();
+                                esperar(1500);
+                            } else {
+                                for (int j = 0; j < listaFiltradaRevista.size(); j++) {
+                                    System.out.printf("\n%d - %s\n", listaRevistas.indexOf(listaFiltradaRevista.get(j)), listaFiltradaRevista.get(j).getNome());
+                                }
+                                listaFiltradaRevista.clear();
                                 esperar(1500);
                             }
                         //SAIR
@@ -314,7 +567,7 @@ public class BibliotecaOS {
                             System.out.printf("Página %d/%d:\n\n", ((max_index+1) / 5), (Math.round(listaLivros.size() / 5) > 0 ? Math.round(listaLivros.size() / 5) : 1));
                             for (int i = min_index; i <= max_index; i++) {
                                 try {
-                                    System.out.printf("%d - %s\n", i, listaLivros.get(i).getNomeLivro());
+                                    System.out.printf("%d - %s\n", i, listaLivros.get(i).getNome());
                                 }
                                 catch (IndexOutOfBoundsException e) {
                                     break;
@@ -325,9 +578,9 @@ public class BibliotecaOS {
                             System.out.print("\n> ");
                             opcao3 = scanner.next().toUpperCase().trim();
                             if (opcao3.equals("I")) {
-                                index = verificarInt("Insira o index do livro no qual você deseja acessar as informações: ");
+                                index = verificarInt("Insira o ID do livro no qual você deseja acessar as informações: ");
                                 //Exibir informações
-                                System.out.printf("\nID: %d\nNome: %s\nAutor: %s\nEditora: %s\nCDD: %s\nISBN: %s\nEdição: %d°\nAno de Publicação: %d\nSeção: %s\nPrateleira: %d\n", index, listaLivros.get(index).getNomeLivro(), listaLivros.get(index).getAutor(), listaLivros.get(index).getEditora(), listaLivros.get(index).getCDD(), listaLivros.get(index).getISBN(), listaLivros.get(index).getEdicao(), listaLivros.get(index).getAnoPublicacao(), listaLivros.get(index).getSecao(), listaLivros.get(index).getPrateleira());
+                                System.out.printf("\nID: %d\nNome: %s\nAutor: %s\nEditora: %s\nCDD: %s\nISBN: %s\nEdição: %d°\nAno de Publicação: %d\nSeção: %s\nPrateleira: %d\n", index, listaLivros.get(index).getNome(), listaLivros.get(index).getAutor(), listaLivros.get(index).getEditora(), listaLivros.get(index).getCDD(), listaLivros.get(index).getISBN(), listaLivros.get(index).getEdicao(), listaLivros.get(index).getAnoPublicacao(), listaLivros.get(index).getSecao(), listaLivros.get(index).getPrateleira());
                                 scanner.nextLine(); //Limpar buffer
                                 esperar(3000);
                             }else if (opcao3.equals("D")) {
@@ -359,7 +612,7 @@ public class BibliotecaOS {
                                 }
                             } else if (opcao3.equals("E")) {
                                 //EXCLUIR LIVRO DA LISTA
-                                index = verificarInt("Insira o index do livro no qual você deseja remover da lista: ");
+                                index = verificarInt("Insira o ID do livro no qual você deseja remover da lista: ");
                                 listaLivros.remove(index);
                             } else if (opcao3.equals("O")) {
                                 //organizar lista em ordem numérica
@@ -370,7 +623,7 @@ public class BibliotecaOS {
                                 //int tentativas = 0;
                                 do {
                                     for (int i = 0; i < listaLivros.size() - 1; i++) {
-                                        if (listaLivros.get(i).getNomeLivro().toUpperCase().charAt(0) > listaLivros.get(i+1).getNomeLivro().toUpperCase().charAt(0)) {
+                                        if (listaLivros.get(i).getNome().toUpperCase().charAt(0) > listaLivros.get(i+1).getNome().toUpperCase().charAt(0)) {
                                             item1 = listaLivros.get(i);
                                             item2 = listaLivros.get(i+1);
                                             temp = item1;
@@ -382,7 +635,104 @@ public class BibliotecaOS {
                                     }
                                     // System.out.println(tentativas);
                                     // tentativas++;
-                                } while (!listaEstaOrganizada(listaLivros));
+                                } while (!listaLivrosEstaOrganizada(listaLivros));
+                                //System.out.println("Tentativas: " + tentativas);
+                            } else if (opcao3.equals("S")) {
+                                //SAIR
+                                break;
+                            } else {
+                                //VALOR INVÁLIDO
+                                System.out.println("ERRO: Opção inválida!");
+                            }
+                        } while (true);
+                    }
+                    opcao1 = 0;
+                    break;
+                case 6:
+                    //Listar revistas
+                    if (listaRevistas.size() == 0) {
+                        System.out.println("ERRO: Não há nenhuma revista cadastrada!");
+                        esperar(1500);
+                        opcao1 = 0;
+                    } else {
+                        int min_index = 0;
+                        int max_index = 4;
+                        int index = 0;
+                        String opcao3 = "";
+                        do {
+                            System.out.println("\n===============================\n\tLista de Revistas\n===============================\n");
+                            System.out.printf("Página %d/%d:\n\n", ((max_index+1) / 5), (Math.round(listaRevistas.size() / 5) > 0 ? Math.round(listaRevistas.size() / 5) : 1));
+                            for (int i = min_index; i <= max_index; i++) {
+                                try {
+                                    System.out.printf("%d - %s\n", i, listaRevistas.get(i).getNome());
+                                }
+                                catch (IndexOutOfBoundsException e) {
+                                    break;
+                                }
+                            }
+                            //Introdução + primeira página da lista
+                            System.out.println("\n[I] - Acessar as informações de uma revista pelo ID.\n[A] - Página anterior\n[D] - Próxima página\n[P] - Primeira página\n[U] - Última página\n[E] - Excluir revista da lista pelo ID\n[O] - Organizar lista alfabéticamente\n[S] - Sair");
+                            System.out.print("\n> ");
+                            opcao3 = scanner.next().toUpperCase().trim();
+                            if (opcao3.equals("I")) {
+                                index = verificarInt("Insira o ID da revista no qual você deseja acessar as informações: ");
+                                //Exibir informações
+                                System.out.printf("\nID: %d\nNome: %s\nAutor: %s\nEditora: %s\nCDD: %s\nISBN: %s\nEdição: %d°\nAno de Publicação: %d\nSeção: %s\nPrateleira: %d\n", index, listaRevistas.get(index).getNome(), listaRevistas.get(index).getAutor(), listaRevistas.get(index).getEditora(), listaRevistas.get(index).getCDD(), listaRevistas.get(index).getISBN(), listaRevistas.get(index).getEdicao(), listaRevistas.get(index).getAnoPublicacao(), listaRevistas.get(index).getSecao(), listaRevistas.get(index).getPrateleira());
+                                scanner.nextLine(); //Limpar buffer
+                                esperar(3000);
+                            }else if (opcao3.equals("D")) {
+                                //PRÓXIMA PÁGINA
+                                if (listaRevistas.size() > max_index+1) {
+                                    min_index += 5;
+                                    max_index += 5;
+                               } else {
+                                    System.out.println("ERRO: Não foi possível ir para a próxima página.");
+                                    esperar(1500);
+                                }
+                            } else if (opcao3.equals("A")) {
+                                //PÁGINA ANTERIOR
+                                if (min_index > 0) {
+                                    min_index -= 5;
+                                    max_index -= 5;
+                                } else {
+                                    System.out.println("ERRO: Não foi possível ir para a página anterior.");
+                                    esperar(1500);
+                                }
+                            } else if (opcao3.equals("P")) {
+                                min_index = 0;
+                                max_index = 4;
+                            } else if (opcao3.equals("U")) {
+                                //ÚLTIMA PÁGINA
+                                for (int i = 1; (i * 5) < listaRevistas.size(); i++) {
+                                    min_index = 5 * i;
+                                    max_index = 5 * (i+1);
+                                }
+                            } else if (opcao3.equals("E")) {
+                                //EXCLUIR LIVRO DA LISTA
+                                index = verificarInt("Insira o ID da revista no qual você deseja remover da lista: ");
+                                listaRevistas.remove(index);
+                            } else if (opcao3.equals("O")) {
+                                //organizar lista em ordem numérica
+                                //organizar lista em ordem alfabética aqui
+                                Revista item1;
+                                Revista item2;
+                                Revista temp;
+                                //int tentativas = 0;
+                                do {
+                                    for (int i = 0; i < listaRevistas.size() - 1; i++) {
+                                        if (listaRevistas.get(i).getNome().toUpperCase().charAt(0) > listaRevistas.get(i+1).getNome().toUpperCase().charAt(0)) {
+                                            item1 = listaRevistas.get(i);
+                                            item2 = listaRevistas.get(i+1);
+                                            temp = item1;
+                                            item1 = item2;
+                                            item2 = temp;
+                                            listaRevistas.set(i, item1);
+                                            listaRevistas.set(i+1, item2);
+                                        }
+                                    }
+                                    // System.out.println(tentativas);
+                                    // tentativas++;
+                                } while (!listaRevistasEstaOrganizada(listaRevistas));
                                 //System.out.println("Tentativas: " + tentativas);
                             } else if (opcao3.equals("S")) {
                                 //SAIR
@@ -399,8 +749,9 @@ public class BibliotecaOS {
                     String opcao4 = "";
                     do {
                         System.out.println("=========================================\n\tGerenciar Espaço (livros)\n=========================================");
-                        System.out.printf("\nEspaço ocupado: %d/1000", listaLivros.size());
-                        System.out.println("\n\n[L] - Limpar a lista de livros\n[S] - Sair");
+                        System.out.printf("\nEspaço ocupado (livros): %d/1000", listaLivros.size());
+                        System.out.printf("\nEspaço ocupado (revistas): %d/1000", listaRevistas.size());
+                        System.out.println("\n\n[L] - Limpar a lista de livros\n[R] - Limpar a lista de revistas\n[S] - Sair");
                         do {
                             System.out.print("\n> ");
                             opcao4 = scanner.nextLine().toUpperCase().trim();
@@ -409,11 +760,22 @@ public class BibliotecaOS {
                         if (opcao4.equals("L")) {
                             String opcao4_B = "";
                                 do {
-                                    System.out.println("Tem certeza que deseja limpar a lista? Essa ação não poderá ser desfeita (escreva \"S\" ou \"N\").");
+                                    System.out.println("Tem certeza que deseja limpar a lista de livros? Essa ação não poderá ser desfeita (escreva \"S\" ou \"N\").");
                                     System.out.print("> ");
                                     opcao4_B = scanner.nextLine().toUpperCase();
                                     if (opcao4_B.equals("S")) {
                                         listaLivros.clear();
+                                        break;
+                                    }
+                                } while (true);
+                        } else if (opcao4.equals("R")) {
+                            String opcao4_B = "";
+                                do {
+                                    System.out.println("Tem certeza que deseja limpar a lista de revistas? Essa ação não poderá ser desfeita (escreva \"S\" ou \"N\").");
+                                    System.out.print("> ");
+                                    opcao4_B = scanner.nextLine().toUpperCase();
+                                    if (opcao4_B.equals("S")) {
+                                        listaRevistas.clear();
                                         break;
                                     }
                                 } while (true);
@@ -425,12 +787,12 @@ public class BibliotecaOS {
                     } while (true);
                     opcao1 = 0;
                     break;    
-                case 9:
+                case 8:
                     System.out.println("========================\n\tCréditos\n========================\n");
                     System.out.println("Criado por TheLuna\nGithub: delunatriestocode\n");
                     opcao1 = 0;
                     esperar(3000);
-                case 10:
+                case 9:
                     //Se o usuário tiver escolhido sair
                     break;
                 default:
@@ -440,7 +802,7 @@ public class BibliotecaOS {
                     opcao1 = 0;
             }
             //Se o usuário tiver escolhido sair
-            if (opcao1 == 10) {
+            if (opcao1 == 9) {
                 System.out.println("\n===========================\n\tTchauzinho!\n===========================\n");                
                 break;
             }
@@ -503,9 +865,17 @@ public class BibliotecaOS {
         } while(true); 
         return atributo; 
     }
-    public static boolean listaEstaOrganizada(ArrayList<Livro> lista) {
+    public static boolean listaLivrosEstaOrganizada(ArrayList<Livro> lista) {
         for (int i = 0; i < lista.size() - 1; i++) {
-            if (lista.get(i).getNomeLivro().toUpperCase().charAt(0) > lista.get(i+1).getNomeLivro().toUpperCase().charAt(0)) {
+            if (lista.get(i).getNome().toUpperCase().charAt(0) > lista.get(i+1).getNome().toUpperCase().charAt(0)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean listaRevistasEstaOrganizada(ArrayList<Revista> lista) {
+        for (int i = 0; i < lista.size() - 1; i++) {
+            if (lista.get(i).getNome().toUpperCase().charAt(0) > lista.get(i+1).getNome().toUpperCase().charAt(0)) {
                 return false;
             }
         }

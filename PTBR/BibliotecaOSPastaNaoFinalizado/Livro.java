@@ -9,10 +9,11 @@ public class Livro {
     =================================================
     */
 
-    String nomeLivro, autor, editora, CDD, ISBN, secao;
-    int edicao, anoPublicacao, prateleira;
-    Livro(String nomeLivro, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira) {
-        this.nomeLivro = nomeLivro;
+    private String nome, autor, editora, CDD, ISBN, secao;
+    private int edicao, anoPublicacao, prateleira;
+    
+    Livro(String nome, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira) {
+        this.nome = nome;
         this.autor = autor;
         this.editora = editora;
         this.CDD = CDD;
@@ -23,8 +24,8 @@ public class Livro {
         this.prateleira = prateleira;
     }
     //GETTERS
-    public String getNomeLivro() {
-        return nomeLivro;
+    public String getNome() {
+        return nome;
     }
     public String getAutor() {
         return autor;
@@ -51,8 +52,8 @@ public class Livro {
         return prateleira;
     }
     //SETTERS
-    public void setNomeLivro(String nomeLivro) {
-        this.nomeLivro = nomeLivro;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     public void setAutor(String autor) {
         this.autor = autor;
