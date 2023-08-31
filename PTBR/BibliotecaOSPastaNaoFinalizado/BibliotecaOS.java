@@ -49,7 +49,7 @@ public class BibliotecaOS {
                     //Intro
                     System.out.println("\n============================\n\tBibliotecaOS\n\t    v1.0\n============================");
                     System.out.println("\nBem-vindo(a), usuário(a)! Insira o número correspondente à opção desejada:");
-                    System.out.println("\n[1] Cadastrar Livro \n[2] Cadastrar Revista (em breve)\n[3] Procurar Livro por palavra-chave \n[4] Procurar Revista por palavra-chave (em breve)\n[5] Listar livros \n[6] Listar revistas (em breve)\n[7] Espaço livre (livro) \n[8] Espaço livro (revista) (em breve)\n[9] Excluir último livro \n[10] Excluir última revista (em breve)\n[11] Créditos\n[12] Sair\n");
+                    System.out.println("\n[1] Cadastrar Livro \n[2] Cadastrar Revista (em breve)\n[3] Procurar Livro por palavra-chave \n[4] Procurar Revista por palavra-chave (em breve)\n[5] Listar livros \n[6] Listar revistas (em breve)\n[7] Espaço livre (livro) \n[8] Espaço livro (revista) (em breve)\n[9] Créditos\n[10] Sair\n");
                     //Input
                     opcao1 = verificarInt("> ");
                     break;
@@ -311,7 +311,7 @@ public class BibliotecaOS {
                         String opcao3 = "";
                         do {
                             System.out.println("\n===============================\n\tLista de Livros\n===============================\n");
-                            System.out.printf("Página %d/%d:\n\n", ((max_index+1) / 5), (Math.round(listaLivros.size() / 5)));
+                            System.out.printf("Página %d/%d:\n\n", ((max_index+1) / 5), (Math.round(listaLivros.size() / 5) > 0 ? Math.round(listaLivros.size() / 5) : 1));
                             for (int i = min_index; i <= max_index; i++) {
                                 try {
                                     System.out.printf("%d - %s\n", i, listaLivros.get(i).getNomeLivro());
@@ -321,25 +321,12 @@ public class BibliotecaOS {
                                 }
                             }
                             //Introdução + primeira página da lista
-                            System.out.println("\n[I] - Acessar as informações de um livro pelo ID.\n[A] - Página anterior\n[D] - Próxima página\n[P] - Primeira página\n[U] - Última página\n[S] - Sair");
+                            System.out.println("\n[I] - Acessar as informações de um livro pelo ID.\n[A] - Página anterior\n[D] - Próxima página\n[P] - Primeira página\n[U] - Última página\n[E] - Excluir livro da lista pelo ID\n[O] - Organizar lista alfabéticamente\n[S] - Sair");
                             System.out.print("\n> ");
                             opcao3 = scanner.next().toUpperCase().trim();
                             if (opcao3.equals("I")) {
-                                do {
-                                    try {
-                                        System.out.print("Insira o index do livro no qual você deseja acessar as informações: ");
-                                        index = scanner.nextInt();
-                                        if (index < 0 || index >= listaLivros.size()) {
-                                            System.out.println("ERRO: Index inválido.");
-                                        } else {
-                                            break;
-                                        }
-                                    } 
-                                    catch (InputMismatchException e) {
-                                        System.out.println("ERRO: Apenas números, por favor.");
-                                        scanner.next(); //Limpar buffer
-                                    }
-                                } while (true);
+                                index = verificarInt("Insira o index do livro no qual você deseja acessar as informações: ");
+                                //Exibir informações
                                 System.out.printf("\nID: %d\nNome: %s\nAutor: %s\nEditora: %s\nCDD: %s\nISBN: %s\nEdição: %d°\nAno de Publicação: %d\nSeção: %s\nPrateleira: %d\n", index, listaLivros.get(index).getNomeLivro(), listaLivros.get(index).getAutor(), listaLivros.get(index).getEditora(), listaLivros.get(index).getCDD(), listaLivros.get(index).getISBN(), listaLivros.get(index).getEdicao(), listaLivros.get(index).getAnoPublicacao(), listaLivros.get(index).getSecao(), listaLivros.get(index).getPrateleira());
                                 scanner.nextLine(); //Limpar buffer
                                 esperar(3000);
@@ -370,6 +357,33 @@ public class BibliotecaOS {
                                     min_index = 5 * i;
                                     max_index = 5 * (i+1);
                                 }
+                            } else if (opcao3.equals("E")) {
+                                //EXCLUIR LIVRO DA LISTA
+                                index = verificarInt("Insira o index do livro no qual você deseja remover da lista: ");
+                                listaLivros.remove(index);
+                            } else if (opcao3.equals("O")) {
+                                //organizar lista em ordem numérica
+                                //organizar lista em ordem alfabética aqui
+                                Livro item1;
+                                Livro item2;
+                                Livro temp;
+                                int tentativas = 0;
+                                do {
+                                    for (int i = 0; i < listaLivros.size() - 1; i++) {
+                                        if (listaLivros.get(i).getNomeLivro().toUpperCase().charAt(0) > listaLivros.get(i+1).getNomeLivro().toUpperCase().charAt(0)) {
+                                            item1 = listaLivros.get(i);
+                                            item2 = listaLivros.get(i+1);
+                                            temp = item1;
+                                            item1 = item2;
+                                            item2 = temp;
+                                            listaLivros.set(i, item1);
+                                            listaLivros.set(i+1, item2);
+                                        }
+                                    }
+                                    System.out.println(tentativas);
+                                    tentativas++;
+                                } while (!listaEstaOrganizada(listaLivros));
+                                System.out.println("Tentativas: " + tentativas);
                             } else if (opcao3.equals("S")) {
                                 //SAIR
                                 break;
@@ -386,7 +400,7 @@ public class BibliotecaOS {
                     do {
                         System.out.println("=========================================\n\tGerenciar Espaço (livros)\n=========================================");
                         System.out.printf("\nEspaço ocupado: %d/1000", listaLivros.size());
-                        System.out.println("\n\n[L] - Limpar a lista de livros\n[O] - Organizar a lista em ordem alfabética\n[S] - Sair");
+                        System.out.println("\n\n[L] - Limpar a lista de livros\n[S] - Sair");
                         do {
                             System.out.print("\n> ");
                             opcao4 = scanner.nextLine().toUpperCase().trim();
@@ -403,8 +417,6 @@ public class BibliotecaOS {
                                         break;
                                     }
                                 } while (true);
-                        } else if (opcao4.equals("O")) {
-                            //organizar lista em ordem alfabética aqui
                         } else if (opcao4.equals("S")) {
                             break;
                         } else {
@@ -413,12 +425,12 @@ public class BibliotecaOS {
                     } while (true);
                     opcao1 = 0;
                     break;    
-                case 11:
+                case 9:
                     System.out.println("========================\n\tCréditos\n========================\n");
                     System.out.println("Criado por TheLuna\nGithub: delunatriestocode\n");
                     opcao1 = 0;
                     esperar(3000);
-                case 12:
+                case 10:
                     //Se o usuário tiver escolhido sair
                     break;
                 default:
@@ -428,7 +440,7 @@ public class BibliotecaOS {
                     opcao1 = 0;
             }
             //Se o usuário tiver escolhido sair
-            if (opcao1 == 12) {
+            if (opcao1 == 10) {
                 System.out.println("\n===========================\n\tTchauzinho!\n===========================\n");                
                 break;
             }
@@ -490,5 +502,13 @@ public class BibliotecaOS {
             }
         } while(true); 
         return atributo; 
+    }
+    public static boolean listaEstaOrganizada(ArrayList<Livro> lista) {
+        for (int i = 0; i < lista.size() - 1; i++) {
+            if (lista.get(i).getNomeLivro().toUpperCase().charAt(0) > lista.get(i+1).getNomeLivro().toUpperCase().charAt(0)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
