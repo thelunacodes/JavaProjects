@@ -4,6 +4,14 @@ import java.util.Scanner;
 
 public class DateValidator_DDMMYYYY {
     public static void main(String[] args) {
+
+        /*
+        =================================================
+        Github: delunatriestocode
+        Linkedin: in/gabrielsilveiradeluna
+        =================================================
+        */
+
         String date;
         Scanner scanner = new Scanner(System.in);
         int slashCouter = 0;

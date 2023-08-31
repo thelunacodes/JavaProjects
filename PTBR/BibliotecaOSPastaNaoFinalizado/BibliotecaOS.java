@@ -6,6 +6,14 @@ import java.util.Scanner;
 
 public class BibliotecaOS {
     public static void main(String[] args) {
+
+        /*
+        =================================================
+        Github: delunatriestocode
+        Linkedin: in/gabrielsilveiradeluna
+        =================================================
+        */
+
         //atributos gerais
         Scanner scanner = new Scanner(System.in);
         String nomeLivro = "", autor = "", editora = "", CDD = "", ISBN = "", secao = "";

@@ -5,6 +5,14 @@ import java.util.Random;
 
 public class AlgoritmoOrganizacaoNumeros {
     public static void main(String[] args) {
+
+        /*
+        =================================================
+        Github: delunatriestocode
+        Linkedin: in/gabrielsilveiradeluna
+        =================================================
+        */
+        
         ArrayList<Integer> sequencia = new ArrayList<Integer>(); //lista
         Random random = new Random(); //instância de random
         final int TAMANHO_LISTA = 20; //tamanho da lista

@@ -1,6 +1,14 @@
 package PTBR.BibliotecaOSPastaNaoFinalizado;
 
 public class Livro {
+
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+
     String nomeLivro, autor, editora, CDD, ISBN, secao;
     int edicao, anoPublicacao, prateleira;
     Livro(String nomeLivro, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira) {

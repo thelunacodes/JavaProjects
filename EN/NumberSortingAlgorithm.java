@@ -5,6 +5,14 @@ import java.util.Random;
 
 public class NumberSortingAlgorithm {
     public static void main(String[] args) {
+
+        /*
+        =================================================
+        Github: delunatriestocode
+        Linkedin: in/gabrielsilveiradeluna
+        =================================================
+        */
+        
         ArrayList<Integer> sequence = new ArrayList<Integer>(); //list
         Random random = new Random(); //random instance
         final int LIST_SIZE = 20; //list size

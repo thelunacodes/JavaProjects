@@ -4,6 +4,14 @@ import java.util.Scanner;
 
 public class ValidadorDeEndereçoIP {
     public static void main(String[] args) {
+
+        /*
+        =================================================
+        Github: delunatriestocode
+        Linkedin: in/gabrielsilveiradeluna
+        =================================================
+        */
+        
         String ip = "";
         Scanner scanner = new Scanner(System.in);
         int contadorDePontos = 0;

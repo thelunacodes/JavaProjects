@@ -4,6 +4,14 @@ import java.util.Scanner;
 
 public class ValidadorDeData {
     public static void main(String[] args) {
+
+        /*
+        =================================================
+        Github: delunatriestocode
+        Linkedin: in/gabrielsilveiradeluna
+        =================================================
+        */
+
         String data;
         Scanner sacanner = new Scanner(System.in);
         int contadorDeBarras = 0;

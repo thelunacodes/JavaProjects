@@ -3,6 +3,14 @@ import java.util.Scanner;
 
 public class IPAddressValidator {
     public static void main(String[] args) {
+
+        /*
+        =================================================
+        Github: delunatriestocode
+        Linkedin: in/gabrielsilveiradeluna
+        =================================================
+        */
+        
         String ip = "";
         Scanner scanner = new Scanner(System.in);
         int dotCounter = 0;
