@@ -15,6 +15,13 @@ public class AlgoritmoOrganizacaoNumeros {
         for (int i = 0; i <= TAMANHO_LISTA; i++) {
             sequencia.add(random.nextInt(VAL_MAX)+1);
         } 
+        System.out.println("========================================\n\tAlgoritmo de Organização\n\t     de Números v1.0\n========================================\n");
+        //Lista Original
+        System.out.println("Lista original: \n");
+        for (int num : sequencia) {
+            System.out.print(num + " ");
+        }
+        System.out.println(" \n");
         //Fazer a troca se o valor j for maior que o próximo valor
         do {
             for (int j = 0; j < sequencia.size() - 1; j++) {
@@ -29,10 +36,11 @@ public class AlgoritmoOrganizacaoNumeros {
             tentativas++;
         } while (!listaEstaOrganizada(sequencia));
         //Exibir lista organizada
-        System.out.println("Lista organizada depois de " + tentativas + " tentativas: ");
+        System.out.println("Lista organizada depois de " + tentativas + " tentativas: \n");
         for (int num : sequencia) {
-            System.out.println(num);
+            System.out.print(num + " ");
         }
+        System.out.println(" \n");
     }
     //Método que checa se a lista foi organizada
     public static boolean listaEstaOrganizada(ArrayList<Integer> arraylist) {

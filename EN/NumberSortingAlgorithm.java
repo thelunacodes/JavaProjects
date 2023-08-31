@@ -15,6 +15,12 @@ public class NumberSortingAlgorithm {
         for (int i = 0; i <= LIST_SIZE; i++) {
             sequence.add(random.nextInt(MAX_VAL)+1);
         } 
+        System.out.println("========================================\n\tNumber Sorting Algorithm\n\t\t   v1.0\n========================================\n");
+        System.out.println("Original List: \n");
+        for (int num : sequence) {
+            System.out.print(num + " ");
+        }
+        System.out.println(" \n");
         //Switch value in index j with the value in index j+1 if they're bigger
         do {
             for (int j = 0; j < sequence.size() - 1; j++) {
@@ -29,10 +35,11 @@ public class NumberSortingAlgorithm {
             tries++;
         } while (!listIsOrganized(sequence));
         //Show organized list
-        System.out.println("Organized list after " + tries + " tries: ");
+        System.out.println("Organized list after " + tries + " tries: \n");
         for (int num : sequence) {
-            System.out.println(num);
+            System.out.print(num + " ");
         }
+        System.out.println(" \n");
     }
     //Método que checa se a lista foi organizada
     public static boolean listIsOrganized(ArrayList<Integer> arraylist) {
