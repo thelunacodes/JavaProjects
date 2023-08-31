@@ -367,7 +367,7 @@ public class BibliotecaOS {
                                 Livro item1;
                                 Livro item2;
                                 Livro temp;
-                                int tentativas = 0;
+                                //int tentativas = 0;
                                 do {
                                     for (int i = 0; i < listaLivros.size() - 1; i++) {
                                         if (listaLivros.get(i).getNomeLivro().toUpperCase().charAt(0) > listaLivros.get(i+1).getNomeLivro().toUpperCase().charAt(0)) {
@@ -380,10 +380,10 @@ public class BibliotecaOS {
                                             listaLivros.set(i+1, item2);
                                         }
                                     }
-                                    System.out.println(tentativas);
-                                    tentativas++;
+                                    // System.out.println(tentativas);
+                                    // tentativas++;
                                 } while (!listaEstaOrganizada(listaLivros));
-                                System.out.println("Tentativas: " + tentativas);
+                                //System.out.println("Tentativas: " + tentativas);
                             } else if (opcao3.equals("S")) {
                                 //SAIR
                                 break;
