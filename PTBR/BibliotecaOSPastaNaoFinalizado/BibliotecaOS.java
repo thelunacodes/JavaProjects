@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import javax.sound.sampled.SourceDataLine;
+
 public class BibliotecaOS {
     public static void main(String[] args) {
 
@@ -45,6 +47,13 @@ public class BibliotecaOS {
             
             listaLivros.add(new Livro("Percy Jackson: O Ladrão de Raios","Rick Riordan","Intrínseca", "028.5", "978-8580575392", 1, 2014, "Ação, Aventura, Fantasia", 4));
 
+            listaLivros.add(new Livro("99 Tons de Cinza","E. L. James","Intrínseca", "123", "978-8580572186", 2, 2012, "Erótico", 8));
+
+            listaLivros.add(new Livro("50 Tons de Cinza","E. L. James","Intrínseca", "123", "978-8580572186", 2, 2012, "Erótico", 8));
+
+            listaLivros.add(new Livro("1984","George Orwell","Companhia das Letras", "123", "978-8535914849", 1, 2009, "Ficção Distópica, Sci-fi, Ficção Política", 3));
+            
+            //Revistas
             listaRevistas.add(new Revista("Veja", "Roberto Civita", "Abril", "123", "978-8523203245", 3000, 2021, "política, cultura e econômia", 7, "0100-7122"));
 
         //Navegação do App
@@ -564,7 +573,7 @@ public class BibliotecaOS {
                         String opcao3 = "";
                         do {
                             System.out.println("\n===============================\n\tLista de Livros\n===============================\n");
-                            System.out.printf("Página %d/%d:\n\n", ((max_index+1) / 5), (Math.round(listaLivros.size() / 5) > 0 ? Math.round(listaLivros.size() / 5) : 1));
+                            System.out.printf("Página %d/%d:\n\n", ((max_index+1) / 5), (Math.round(listaLivros.size() / 5) > 0 ? Math.round(listaLivros.size() / 5) + 1 : 1));
                             for (int i = min_index; i <= max_index; i++) {
                                 try {
                                     System.out.printf("%d - %s\n", i, listaLivros.get(i).getNome());
@@ -615,28 +624,59 @@ public class BibliotecaOS {
                                 index = verificarInt("Insira o ID do livro no qual você deseja remover da lista: ");
                                 listaLivros.remove(index);
                             } else if (opcao3.equals("O")) {
-                                //organizar lista em ordem numérica
-                                //organizar lista em ordem alfabética aqui
                                 Livro item1;
                                 Livro item2;
                                 Livro temp;
-                                //int tentativas = 0;
+                                String num = "";
+                                int numitem1 = 0;
+                                int numitem2 = 0;
+                                
+                                //Colocar os números pro início da lista 
+                                for (int j = 0; j < listaLivros.size(); j++) {
+                                    if (Character.isDigit(listaLivros.get(j).getNome().charAt(0))) {
+                                        Livro itemNum = listaLivros.get(j);
+                                        listaLivros.remove(j);
+                                        listaLivros.add(0, itemNum);
+                                    }
+                                }
+
                                 do {
                                     for (int i = 0; i < listaLivros.size() - 1; i++) {
-                                        if (listaLivros.get(i).getNome().toUpperCase().charAt(0) > listaLivros.get(i+1).getNome().toUpperCase().charAt(0)) {
-                                            item1 = listaLivros.get(i);
-                                            item2 = listaLivros.get(i+1);
-                                            temp = item1;
-                                            item1 = item2;
-                                            item2 = temp;
-                                            listaLivros.set(i, item1);
-                                            listaLivros.set(i+1, item2);
+                                        item1 = listaLivros.get(i);
+                                        item2 = listaLivros.get(i+1);
+                                        temp = item1;
+
+                                        //Organizar nomes com número
+                                        numitem1 = nomeComecaComNumero(item1.getNome());
+                                        System.out.println(numitem1);
+                                        numitem2 = nomeComecaComNumero(item2.getNome());
+                                        System.out.println(numitem2);
+
+                                        //Os dois nomes começam com números
+                                        if (numitem1 != -999999999 && numitem2 != -999999999) {
+                                            if (numitem1 > numitem2) {
+                                                System.out.println("teste");
+                                                item1 = item2;
+                                                item2 = temp;
+                                                listaLivros.set(i, item1);
+                                                listaLivros.set(i+1, item2);
+                                            } else {
+                                                System.out.println("teste2");
+                                            }
+                                        } else {
+                                            //Nenhum dos nomes começam com números
+                                            if (listaLivros.get(i).getNome().toUpperCase().charAt(0) > listaLivros.get(i+1).getNome().toUpperCase().charAt(0)) {
+                                                item1 = listaLivros.get(i);
+                                                item2 = listaLivros.get(i+1);
+                                                temp = item1;
+                                                item1 = item2;
+                                                item2 = temp;
+                                                listaLivros.set(i, item1);
+                                                listaLivros.set(i+1, item2);
+                                            }
                                         }
                                     }
-                                    // System.out.println(tentativas);
-                                    // tentativas++;
-                                } while (!listaLivrosEstaOrganizada(listaLivros));
-                                //System.out.println("Tentativas: " + tentativas);
+                                } while (!listaLivrosEstaOrganizada(listaLivros, numitem1, numitem2));
                             } else if (opcao3.equals("S")) {
                                 //SAIR
                                 break;
@@ -853,6 +893,7 @@ public class BibliotecaOS {
         } while(true);
         return atributo;
     }
+    //Método que valida Strings
     public static String verificarString(String msg) {
         String atributo = "";
         Scanner scanner = new Scanner(System.in);
@@ -865,14 +906,22 @@ public class BibliotecaOS {
         } while(true); 
         return atributo; 
     }
-    public static boolean listaLivrosEstaOrganizada(ArrayList<Livro> lista) {
+    //Método que checa se o array de livros ta organizado
+    public static boolean listaLivrosEstaOrganizada(ArrayList<Livro> lista, int numItem1, int numIntem2) {
         for (int i = 0; i < lista.size() - 1; i++) {
-            if (lista.get(i).getNome().toUpperCase().charAt(0) > lista.get(i+1).getNome().toUpperCase().charAt(0)) {
-                return false;
+            if (numItem1 != -999999999 && numIntem2 != -999999999) {
+                if (numItem1 > numIntem2) {
+                    return false;
+                } 
+            } else {
+                if (lista.get(i).getNome().toUpperCase().charAt(0) > lista.get(i+1).getNome().toUpperCase().charAt(0)) {
+                    return false;
+                }
             }
         }
         return true;
     }
+    //Método que checa se o array de revistas ta organizado
     public static boolean listaRevistasEstaOrganizada(ArrayList<Revista> lista) {
         for (int i = 0; i < lista.size() - 1; i++) {
             if (lista.get(i).getNome().toUpperCase().charAt(0) > lista.get(i+1).getNome().toUpperCase().charAt(0)) {
@@ -880,5 +929,30 @@ public class BibliotecaOS {
             }
         }
         return true;
+    }
+    //Método que checa se o nome de um livro/revista contém números, retornando esses números
+    public static int nomeComecaComNumero(String nome) {
+        String numString = "";
+        int num;
+        boolean ehDigito = true;
+        for (int i = 0; ehDigito; i++) {
+            if (i < nome.length()) {
+                if (Character.isDigit(nome.charAt(i))) {
+                    numString = nome.substring(0,i+1);
+                } else {
+                    ehDigito = false;
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+        if (numString.isEmpty()) {
+            return -999999999;
+        } else {
+            num = Integer.parseInt(numString);
+            return num;
+        }
+        
     }
 }
