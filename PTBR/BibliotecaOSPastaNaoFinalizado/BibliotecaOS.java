@@ -771,7 +771,7 @@ public class BibliotecaOS {
 
                                                 // Os dois nomes começam com números
                                                 if (numitem1 != -999999999 && numitem2 != -999999999) {
-                                                    if (numitem1 > numitem2) {
+                                                    if (numitem1 < numitem2) {
                                                         System.out.println("teste");
                                                         temp = item1;
                                                         item1 = item2;
@@ -1073,15 +1073,24 @@ public class BibliotecaOS {
 
     // Método que checa se o array de livros ta organizado
     public static boolean listaLivrosEstaOrganizada(ArrayList<Livro> lista, int numItem1, int numIntem2) {
+        //verificar até onde vão os itens que começam com número
+        int indexNumEnd = 0;
         for (int i = 0; i < lista.size() - 1; i++) {
-            if (numItem1 != -999999999 && numIntem2 != - 999999999) {
-                if (numItem1 > numIntem2) {
-                    return false;
-                }
+            if (Character.isDigit(lista.get(i).getNome().toUpperCase().charAt(0))) {
+                indexNumEnd++;
             } else {
-                if (lista.get(i).getNome().toUpperCase().charAt(0) > lista.get(i + 1).getNome().toUpperCase().charAt(0)) {
-                    return false;
-                }
+                break;
+            }
+        }
+        //checar se números estão ordenados
+        for (int j = 0; j <= indexNumEnd; j++) {
+            if (numItem1 < numIntem2) {
+                return false;
+            }
+        }
+        for (int k = indexNumEnd + 1; k < lista.size() - 1; k++) {
+            if (lista.get(k).getNome().toUpperCase().charAt(0) > lista.get(k + 1).getNome().toUpperCase().charAt(0)) {
+                return false;
             }
         }
         return true;
