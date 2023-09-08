@@ -936,8 +936,7 @@ public class BibliotecaOS {
                 case 4:
                     String opcao4 = "";
                     do {
-                        System.out.println(
-                                "=========================================\n\tGerenciar Espaço (livros)\n=========================================");
+                        System.out.println("================================\n\tGerenciar Espaço\n================================");
                         System.out.printf("\nEspaço ocupado (livros): %d/1000", listaLivros.size());
                         System.out.printf("\nEspaço ocupado (revistas): %d/1000", listaRevistas.size());
                         System.out.println(
