@@ -1,9 +1,11 @@
-package PTBR.BibliotecaOSPastaNaoFinalizado;
+package PTBR.BibliotecaOSPasta;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.awt.Desktop;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -21,6 +23,11 @@ public class BibliotecaOS {
     static String opcaoInvalidaString = "ERRO: Opção inválida!";
     static String listaCheiaString = "ERRO: A lista está cheia!";
     static String listaVaziaString = "ERRO: A lista está vazia!";
+    // CAMINHO DOS ARQUIVOS
+    static String nomeDaClasseCompleto = BibliotecaOS.class.getName();
+    static String nomeDaClasseSimples = BibliotecaOS.class.getSimpleName();
+    static String nomeDoPacote = nomeDaClasseCompleto.substring(0, nomeDaClasseCompleto.length() - nomeDaClasseSimples.length() - 1);
+    static String caminhoArquivoLivro = System.getProperty("user.dir") + "\\PRBR\\" + nomeDoPacote.replace(".", "\\") + "\\arquivoLivros.txt";
 
     public static void main(String[] args) {
 
@@ -30,6 +37,8 @@ public class BibliotecaOS {
          * Linkedin: in/gabrielsilveiradeluna
          * =================================================
          */
+
+        System.out.println(nomeDoPacote);
 
         listaLivros.add(new Livro("O Pequeno Principe", "Antoine de Saint-Exupéry", "Nova Fronteira", "843",
                 "978-8520930144", 1, 2016, "Infantil, Fábula, Ficção", 10));
@@ -111,6 +120,20 @@ public class BibliotecaOS {
             // SAIR
             if (opcao0 == 6) {
                 System.out.println("\n===========================\n\tTchauzinho!\n===========================\n");
+                //escrever no arquivo
+                String listaLivrostxt = "", listaLivrosLinha;
+                for (int i = 0; i < listaLivros.size(); i++) {
+                    listaLivrosLinha = String.format("%s; %s; %s; %s; %s; %d; %d; %s; %d\n", listaLivros.get(i).getNome(), listaLivros.get(i).getAutor(), listaLivros.get(i).getEditora(), listaLivros.get(i).getCDD(), listaLivros.get(i).getISBN(), listaLivros.get(i).getEdicao(), listaLivros.get(i).getAnoPublicacao(), listaLivros.get(i).getSecao(), listaLivros.get(i).getPrateleira());
+                    listaLivrostxt += listaLivrosLinha;
+                }
+                //System.out.println(listaLivrostxt);
+                try {
+                    BufferedWriter arquivoLivro = new BufferedWriter(new FileWriter(caminhoArquivoLivro));
+                    arquivoLivro.write(listaLivrostxt);
+                    arquivoLivro.close();
+                } catch (IOException e) {
+                    System.out.println("ERRO: O arquivo não pode ser atualizado com sucesso :( \n" + e.getMessage());
+                }
                 break;
             }
         } while (true);
@@ -137,7 +160,7 @@ public class BibliotecaOS {
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("ERRO: Apenas números, por favor.");
-                scanner.next();
+                //scanner.next();
             }
         } while (true);
         scanner.nextLine(); 
@@ -154,7 +177,7 @@ public class BibliotecaOS {
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("ERRO: Apenas números, por favor.");
-                scanner.next();
+                //scanner.next();
             }
         } while (true);
         scanner.nextLine(); 
