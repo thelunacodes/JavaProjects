@@ -4,11 +4,17 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class BibliotecaOS {
     // ATRIBUTOS GERAIS
@@ -24,10 +30,10 @@ public class BibliotecaOS {
     static String listaCheiaString = "ERRO: A lista está cheia!";
     static String listaVaziaString = "ERRO: A lista está vazia!";
     // CAMINHO DOS ARQUIVOS
-    static String nomeDaClasseCompleto = BibliotecaOS.class.getName();
-    static String nomeDaClasseSimples = BibliotecaOS.class.getSimpleName();
-    static String nomeDoPacote = nomeDaClasseCompleto.substring(0, nomeDaClasseCompleto.length() - nomeDaClasseSimples.length() - 1);
-    static String caminhoArquivoLivro = System.getProperty("user.dir") + "\\PRBR\\" + nomeDoPacote.replace(".", "\\") + "\\arquivoLivros.txt";
+    static String caminhoDesktop = System.getProperty("user.home") + File.separator +"Desktop";
+    static String pastaArquivosBiblioteca = caminhoDesktop + "\\BibliotecaOSFiles";
+    static Path caminhoLivro = Paths.get(pastaArquivosBiblioteca + "\\arquivoLivros.txt");
+    static Path caminhoRevista = Paths.get(pastaArquivosBiblioteca + "\\arquivoRevistas.txt");
 
     public static void main(String[] args) {
 
@@ -38,43 +44,11 @@ public class BibliotecaOS {
          * =================================================
          */
 
-        System.out.println(nomeDoPacote);
+        // LER LISTA ARQUIVOS
+        criarPastaArquivo();
+        lerPastaLivros();
+        lerPastaRevistas();
 
-        listaLivros.add(new Livro("O Pequeno Principe", "Antoine de Saint-Exupéry", "Nova Fronteira", "843",
-                "978-8520930144", 1, 2016, "Infantil, Fábula, Ficção", 10));
-
-        listaLivros.add(new Livro("Harry Potter e a Pedra Filosofal", "J. K. Rowlling", "Rocco", "239",
-                "978-8532530783", 1, 2017, "Infantil, Fantasia, Aventura, Ficção", 7));
-
-        listaLivros.add(new Livro("Biblia Sagrada", "Deus", "Paulinas", "200", "978-8535611748", 1, 2005, "Religião", 4));
-
-        listaLivros.add(new Livro("Heartstopper", "Alice Oseman e Guilherme Miranda", "Seguinte", "741.5",
-                "978-8555341618", 1, 2021, "Drama, Romance, LGBT, Comédia", 17));
-
-        listaLivros.add(new Livro("Percy Jackson: O Ladrão de Raios", "Rick Riordan", "Intrínseca", "028.5",
-                "978-8580575392", 1, 2014, "Ação, Aventura, Fantasia", 4));
-
-        listaLivros.add(new Livro("99 Tons de Cinza", "E. L. James", "Intrínseca", "123", "978-8580572186", 2, 2012,
-                "Erótico", 8));
-
-        listaLivros.add(new Livro("50 Tons de Cinza", "E. L. James", "Intrínseca", "123", "978-8580572186", 2, 2012,
-                "Erótico", 8));
-
-        listaLivros.add(new Livro("1984", "George Orwell", "Companhia das Letras", "123", "978-8535914849", 1, 2009,
-                "Ficção Distópica, Sci-fi, Ficção Política", 3));
-
-        // REVISTAS
-        listaRevistas.add(new Revista("Veja", "Roberto Civita", "Abril", "123", "978-8523203245", 3000, 2021,
-                "política, cultura e econômia", 7, "0100-7122"));
-
-        listaRevistas.add(new Revista("Xeja", "Roberto Civita", "Abril", "123", "978-8523203245", 3000, 2021,
-                "política, cultura e econômia", 7, "0100-7135"));
-
-        listaRevistas.add(new Revista("Geja", "Roberto Civita", "Abril", "123", "978-8523203245", 3000, 2021,
-                "política, cultura e econômia", 7, "0100-7127"));
-
-        listaRevistas.add(new Revista("Beja", "Roberto Civita", "Abril", "123", "978-8523203245", 3000, 2021,
-                "política, cultura e econômia", 7, "0100-7182"));
         // NAVEGAÇÃO DO SISTEMA
         do {
             switch (opcao0) {
@@ -119,21 +93,8 @@ public class BibliotecaOS {
             }
             // SAIR
             if (opcao0 == 6) {
-                System.out.println("\n===========================\n\tTchauzinho!\n===========================\n");
-                //escrever no arquivo
-                String listaLivrostxt = "", listaLivrosLinha;
-                for (int i = 0; i < listaLivros.size(); i++) {
-                    listaLivrosLinha = String.format("%s; %s; %s; %s; %s; %d; %d; %s; %d\n", listaLivros.get(i).getNome(), listaLivros.get(i).getAutor(), listaLivros.get(i).getEditora(), listaLivros.get(i).getCDD(), listaLivros.get(i).getISBN(), listaLivros.get(i).getEdicao(), listaLivros.get(i).getAnoPublicacao(), listaLivros.get(i).getSecao(), listaLivros.get(i).getPrateleira());
-                    listaLivrostxt += listaLivrosLinha;
-                }
-                //System.out.println(listaLivrostxt);
-                try {
-                    BufferedWriter arquivoLivro = new BufferedWriter(new FileWriter(caminhoArquivoLivro));
-                    arquivoLivro.write(listaLivrostxt);
-                    arquivoLivro.close();
-                } catch (IOException e) {
-                    System.out.println("ERRO: O arquivo não pode ser atualizado com sucesso :( \n" + e.getMessage());
-                }
+                salvarLivros();
+                salvarRevistas();
                 break;
             }
         } while (true);
@@ -160,7 +121,7 @@ public class BibliotecaOS {
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("ERRO: Apenas números, por favor.");
-                //scanner.next();
+                scanner.next();
             }
         } while (true);
         scanner.nextLine(); 
@@ -177,7 +138,7 @@ public class BibliotecaOS {
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("ERRO: Apenas números, por favor.");
-                //scanner.next();
+                scanner.next();
             }
         } while (true);
         scanner.nextLine(); 
@@ -297,10 +258,12 @@ public class BibliotecaOS {
     // FILTRAR LIVRO/REVISTA
     public static void filtrarLivroRevista() {
         try {
-            do {
-                System.out.println("Livro ou revista?\n[1] Livro\n[2] Revista\n[3] Sair\n");
-                opcao2 = verificarInt("> ");
+            do {      
                 switch (opcao2) {
+                    case 0:
+                        System.out.println("Livro ou revista?\n[1] Livro\n[2] Revista\n[3] Sair\n");
+                        opcao2 = verificarInt("> ");
+                        break;
                     case 1:
                         // LIVRO
                         filtrarLivro();
@@ -320,6 +283,7 @@ public class BibliotecaOS {
                 if (opcao2 == 3 || opcao2_bL == 10 || opcao2_bR == 11) {
                     opcao2_bL = 0;
                     opcao2_bR = 0;
+                    opcao2 = 0;
                     break;
                 }
             } while (true);
@@ -334,6 +298,9 @@ public class BibliotecaOS {
         try {
             if (listaLivros.size() == 0) {
                 System.out.println(listaVaziaString);
+                opcao0 = 0;
+                opcao2 = 3;
+                esperar(1500);
             } else {
                 do {
                     int atributoInt = 0;
@@ -578,6 +545,9 @@ public class BibliotecaOS {
         try {
             if (listaRevistas.size() == 0) {
                 System.out.println(listaVaziaString);
+                opcao0 = 0;
+                opcao2 = 3;
+                esperar(1500);
             } else {
                 do {
                     int atributoInt = 0;
@@ -843,7 +813,6 @@ public class BibliotecaOS {
 
     // LISTAR LIVRO/REVISTA
     public static void listarLivroRevista() {
-        int opcao3 = 0;
         try {
             do {
                 switch (opcao3) {
@@ -868,6 +837,7 @@ public class BibliotecaOS {
                 if (opcao3 == 3 || opcao3_bL == 8 || opcao3_bR == 8) {
                     opcao3_bL = 0;
                     opcao3_bR = 0;
+                    opcao3 = 0;
                     break;
                 }
             } while (true);
@@ -882,8 +852,9 @@ public class BibliotecaOS {
         if (listaLivros.size() == 0) {
             //se a lista de livro estiver vazia
             System.out.println(listaVaziaString);
-            esperar(1500);
             opcao0 = 0;
+            opcao3 = 3;
+            esperar(1500);
         } else {
             int minIndexL = 0;
             int maxIndexL = 4;
@@ -993,7 +964,8 @@ public class BibliotecaOS {
                         opcao3_bL = 0;
                         break;
                 }
-                if (opcao2_bL == 8) {
+                if (opcao3_bL == 8) {
+                    opcao0 = 0;
                     break;
                 }
             } while (true);
@@ -1002,11 +974,12 @@ public class BibliotecaOS {
 
     // LISTAR REVISTA
     public static void listarRevista() {
-        if (listaLivros.size() == 0) {
+        if (listaRevistas.size() == 0) {
             //se a lista de livro estiver vazia
             System.out.println(listaVaziaString);
-            esperar(1500);
             opcao0 = 0;
+            opcao3 = 3;
+            esperar(1500);    
         } else {
             int minIndexR = 0;
             int maxIndexR = 4;
@@ -1038,17 +1011,16 @@ public class BibliotecaOS {
                         // ACESSAR INFORMAÇÕES PELO ID
                         indexR = verificarInt("Insira o ID do livro no qual você deseja acessar as informações: ");
                         System.out.printf("\nID: %d\nNome: %s\nAutor: %s\nEditora: %s\nCDD: %s\nISBN: %s\nISSN: %s\nEdição: %d°\nAno de Publicação: %d\nSeção: %s\nPrateleira: %d\n", indexR, 
-                                                                                                                                                                                    listaRevistas.get(indexR).getNome(),
-                                                                                                                                                                                    listaRevistas.get(indexR).getAutor(),
-                                                                                                                                                                                    listaRevistas.get(indexR).getEditora(), 
-                                                                                                                                                                                    listaRevistas.get(indexR).getCDD(),
-                                                                                                                                                                                    listaRevistas.get(indexR).getISBN(), 
-                                                                                                                                                                                    listaRevistas.get(indexR).getISSN(),
-                                                                                                                                                                                    listaRevistas.get(indexR).getEdicao(),
-                                                                                                                                                                                    listaRevistas.get(indexR).getAnoPublicacao(),
-                                                                                                                                                                                    listaRevistas.get(indexR).getSecao(),
-                                                                                                                                                                                    listaRevistas.get(indexR).getPrateleira());
-                        
+                        listaRevistas.get(indexR).getNome(),
+                        listaRevistas.get(indexR).getAutor(),
+                        listaRevistas.get(indexR).getEditora(), 
+                        listaRevistas.get(indexR).getCDD(),
+                        listaRevistas.get(indexR).getISBN(), 
+                        listaRevistas.get(indexR).getISSN(),
+                        listaRevistas.get(indexR).getEdicao(),
+                        listaRevistas.get(indexR).getAnoPublicacao(),
+                        listaRevistas.get(indexR).getSecao(),
+                        listaRevistas.get(indexR).getPrateleira());
                         esperar(3000);
                         break;
                     case 2:
@@ -1117,7 +1089,7 @@ public class BibliotecaOS {
                         opcao3_bR = 0;
                         break;
                 }
-                if (opcao2_bL == 8) {
+                if (opcao3_bR == 8) {
                     break;
                 }
             } while (true);
@@ -1174,5 +1146,116 @@ public class BibliotecaOS {
             System.out.println("Um erro foi encontrado! Contate o suporte! \nLinha: " + e.getStackTrace()[0].getLineNumber() + "\nTipo de Erro: " + e.getStackTrace()[0].getClass().getName());
         }
         opcao0 = 0;
+    }
+    // SALVAR LISTA LIVROS
+    public static void salvarLivros() {
+        //SALVAR LIVROS
+        String listaLivrostxt = "", listaLivrosLinha;
+        for (int i = 0; i < listaLivros.size(); i++) {
+            listaLivrosLinha = String.format("%s; %s; %s; %s; %s; %d; %d; %s; %d\n", listaLivros.get(i).getNome(), listaLivros.get(i).getAutor(), listaLivros.get(i).getEditora(), listaLivros.get(i).getCDD(), listaLivros.get(i).getISBN(), listaLivros.get(i).getEdicao(), listaLivros.get(i).getAnoPublicacao(), listaLivros.get(i).getSecao(), listaLivros.get(i).getPrateleira());
+            listaLivrostxt += listaLivrosLinha;
+        }
+        try {
+            BufferedWriter arquivoLivro = new BufferedWriter(new FileWriter(pastaArquivosBiblioteca + "\\arquivoLivros.txt"));
+            arquivoLivro.write(listaLivrostxt);
+            System.out.println("Lista de livros salva em: " + pastaArquivosBiblioteca + "\\arquivoLivros.txt");
+            arquivoLivro.close();
+        } catch (IOException e) {
+            System.out.println("ERRO: O arquivo de livros não pôde ser atualizado :( \n" + e.getMessage());
+        }
+    }
+    public static void salvarRevistas() {
+        //SALVAR REVISTAS
+        String listaRevistastxt = "", listaRevistasLinha;
+        for (int i = 0; i < listaRevistas.size(); i++) {
+            listaRevistasLinha = String.format("%s; %s; %s; %s; %s; %d; %d; %s; %d; %s\n", listaRevistas.get(i).getNome(), listaRevistas.get(i).getAutor(), listaRevistas.get(i).getEditora(), listaRevistas.get(i).getCDD(), listaRevistas.get(i).getISBN(), listaRevistas.get(i).getEdicao(), listaRevistas.get(i).getAnoPublicacao(), listaRevistas.get(i).getSecao(), listaRevistas.get(i).getPrateleira(), listaRevistas.get(i).getISSN());
+            listaRevistastxt += listaRevistasLinha;
+        }
+        try {
+            BufferedWriter arquivoRevista = new BufferedWriter(new FileWriter(pastaArquivosBiblioteca + "\\arquivoRevistas.txt"));
+            arquivoRevista.write(listaRevistastxt);
+            System.out.println("Lista de revistas salva em: " + pastaArquivosBiblioteca + "\\arquivoRevistas.txt");
+            arquivoRevista.close();
+        } catch (IOException e) {
+            System.out.println("ERRO: O arquivo de revistas não pôde ser atualizado :( \n" + e.getMessage());
+        }
+    }
+    public static void criarPastaArquivo() {
+        Path pastaArquivos = Paths.get(pastaArquivosBiblioteca);
+        try {
+            if (!Files.exists(pastaArquivos)) {
+                Files.createDirectories(pastaArquivos);
+                System.out.println("A pasta \"BibliotecaOSFiles\" foi criada em sua Área de Trabalho!");
+            }
+        } catch (IOException e) {
+            System.out.println("ERRO: Não foi possível criar a pasta");
+        }
+    }
+    public static void lerPastaLivros() {
+        if (!Files.exists(caminhoLivro)) {
+            System.out.println("ERRO: O arquivo \"arquivoLivros.txt\" não existe!");
+        } else {
+            BufferedReader leitorLivros = null;
+            try {
+                leitorLivros = new BufferedReader(new FileReader(caminhoLivro.toString()));
+                String linha;
+                while ((linha = leitorLivros.readLine()) != null) {
+                    String[] linhaLivrosArray = linha.split(";");
+                    listaLivros.add(new Livro(linhaLivrosArray[0].trim(), 
+                                              linhaLivrosArray[1].trim(), 
+                                              linhaLivrosArray[2].trim(), 
+                                              linhaLivrosArray[3].trim(), 
+                                              linhaLivrosArray[4].trim(), 
+                                              Integer.parseInt(linhaLivrosArray[5].trim()), 
+                                              Integer.parseInt(linhaLivrosArray[6].trim()), 
+                                              linhaLivrosArray[7].trim(), 
+                                              Integer.parseInt(linhaLivrosArray[8].trim())));
+                }
+            } catch (IOException e) {
+                System.out.println("ERRO: Não foi possível ler o \"arquivoLivros.txt\"");
+            } finally {
+                try {
+                    if (leitorLivros != null) {
+                        leitorLivros.close();
+                    }
+                } catch (IOException e) {
+                    System.out.println("ERRO: Não foi possível fechar o leitor de livros.");
+                }
+            }
+        }
+    }
+    public static void lerPastaRevistas() {
+        if (!Files.exists(caminhoRevista)) {
+            System.out.println("ERRO: O arquivo \"arquivoRevistas.txt\" não existe!");
+        } else {
+            BufferedReader leitorRevistas = null;
+            try {
+                leitorRevistas = new BufferedReader(new FileReader(caminhoRevista.toString()));
+                String linha;
+                while ((linha = leitorRevistas.readLine()) != null) {
+                    String[] linhaRevistasArray = linha.split(";");
+                    listaRevistas.add(new Revista(linhaRevistasArray[0].trim(), 
+                                              linhaRevistasArray[1].trim(), 
+                                              linhaRevistasArray[2].trim(), 
+                                              linhaRevistasArray[3].trim(), 
+                                              linhaRevistasArray[4].trim(), 
+                                              Integer.parseInt(linhaRevistasArray[5].trim()), 
+                                              Integer.parseInt(linhaRevistasArray[6].trim()), 
+                                              linhaRevistasArray[7].trim(), 
+                                              Integer.parseInt(linhaRevistasArray[8].trim()),
+                                              linhaRevistasArray[9]));
+                }
+            } catch (IOException e) {
+                System.out.println("ERRO: Não foi possível ler o \"arquivoRevistas.txt\"");
+            } finally {
+                try {
+                    if (leitorRevistas != null) {
+                        leitorRevistas.close();
+                    }
+                } catch (IOException e) {
+                    System.out.println("ERRO: Não foi possível fechar o leitor de revistas.");
+                }
+            }
+        }
     }
 }
