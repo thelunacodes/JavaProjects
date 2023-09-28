@@ -3,6 +3,7 @@ package PTBR.BibliotecaOSPasta;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.awt.Desktop;
 
 public class AbrirWebPage {
     // MÉTODO QUE ABRE UMA PÁGINA DA WEB
