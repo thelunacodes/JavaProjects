@@ -4,6 +4,13 @@ import static PTBR.BibliotecaOSPasta.InputHandler.verificarString;
 
 public class GerenciarEspacoItens {
     
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+    
     // GERENCIAR ESPAÇO OCUPADO POR LIVRO/REVISTA
     public static void gerenciarEspacoItens() {
         String opcao4 = "";

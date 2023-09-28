@@ -2,6 +2,8 @@ package PTBR.BibliotecaOSPasta;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import PTBR.BibliotecaOSPasta.Objetos.Livro;
+import PTBR.BibliotecaOSPasta.Objetos.Revista;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,6 +23,14 @@ import static PTBR.BibliotecaOSPasta.LeituraEscritaItens.salvarRevistas;
 import static PTBR.BibliotecaOSPasta.Esperar.esperar;
 
 public class BibliotecaOS {
+  
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+
     // ATRIBUTOS GERAIS
     static Scanner scanner = new Scanner(System.in);
     static String nome = "", autor = "", editora = "", CDD = "", ISBN = "", secao = "";
@@ -40,19 +50,10 @@ public class BibliotecaOS {
     static Path caminhoRevista = Paths.get(pastaArquivosBiblioteca + "\\arquivoRevistas.txt");
 
     public static void main(String[] args) {
-
-        /*
-         * =================================================
-         * Github: delunatriestocode
-         * Linkedin: in/gabrielsilveiradeluna
-         * =================================================
-         */
-
         // LER LISTA ARQUIVOS
         criarPastaArquivo();
         lerPastaLivros();
         lerPastaRevistas();
-
         // NAVEGAÇÃO DO SISTEMA
         do {
             switch (opcao0) {

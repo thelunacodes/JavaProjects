@@ -2,12 +2,19 @@ package PTBR.BibliotecaOSPasta;
 
 import static PTBR.BibliotecaOSPasta.InputHandler.verificarInt;
 import static PTBR.BibliotecaOSPasta.InputHandler.verificarString;
-
 import java.util.ArrayList;
-
+import PTBR.BibliotecaOSPasta.Objetos.Livro;
 import static PTBR.BibliotecaOSPasta.Esperar.esperar;
 
 public class FiltrarItens {
+    
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+    
     // FILTRAR LIVRO/REVISTA
     public static void filtrarItens() {
         try {

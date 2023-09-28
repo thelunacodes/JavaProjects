@@ -2,9 +2,20 @@ package PTBR.BibliotecaOSPasta;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import PTBR.BibliotecaOSPasta.Objetos.Livro;
+import PTBR.BibliotecaOSPasta.Objetos.Revista;
+
 import static PTBR.BibliotecaOSPasta.InputHandler.verificarInt;
 
 public class ListarItens {
+    
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+    
     static Scanner scanner = new Scanner(System.in);    
 
     // CHECAR SE O ARRAY DE LIVROS ESTÁ ORGANIZADO

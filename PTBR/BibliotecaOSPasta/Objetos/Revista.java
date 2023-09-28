@@ -1,4 +1,4 @@
-package PTBR.BibliotecaOSPasta;
+package PTBR.BibliotecaOSPasta.Objetos;
 
 public class Revista extends Livro {
 

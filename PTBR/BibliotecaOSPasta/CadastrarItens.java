@@ -2,9 +2,19 @@ package PTBR.BibliotecaOSPasta;
 
 import static PTBR.BibliotecaOSPasta.InputHandler.verificarInt;
 import static PTBR.BibliotecaOSPasta.InputHandler.verificarString;
+import PTBR.BibliotecaOSPasta.Objetos.Livro;
+import PTBR.BibliotecaOSPasta.Objetos.Revista;
 import static PTBR.BibliotecaOSPasta.Esperar.esperar;
 
 public class CadastrarItens {
+            
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+
     // MÉTODO QUE CADASTRA LIVRO/REVISTA
     public static void cadastrarItens() {
         try {

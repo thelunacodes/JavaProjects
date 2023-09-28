@@ -3,6 +3,14 @@ package PTBR.BibliotecaOSPasta;
 import java.util.InputMismatchException;
 
 public class InputHandler {
+    
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+    
     // INPUTS EM INT
     public static int verificarInt(String msg) {
         int atributo = 0;

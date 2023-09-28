@@ -1,4 +1,4 @@
-package PTBR.BibliotecaOSPasta;
+package PTBR.BibliotecaOSPasta.Objetos;
 
 public class Livro {
 
@@ -12,7 +12,7 @@ public class Livro {
     private String nome, autor, editora, CDD, ISBN, secao;
     private int edicao, anoPublicacao, prateleira;
     
-    Livro(String nome, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira) {
+    public Livro(String nome, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira) {
         this.nome = nome;
         this.autor = autor;
         this.editora = editora;

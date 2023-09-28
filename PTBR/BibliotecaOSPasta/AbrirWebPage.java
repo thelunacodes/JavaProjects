@@ -6,6 +6,14 @@ import java.net.URISyntaxException;
 import java.awt.Desktop;
 
 public class AbrirWebPage {
+            
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+
     // MÉTODO QUE ABRE UMA PÁGINA DA WEB
     public static void abrirPagWeb(String link) {
         try {

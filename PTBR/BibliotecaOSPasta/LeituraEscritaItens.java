@@ -8,8 +8,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import PTBR.BibliotecaOSPasta.Objetos.Livro;
+import PTBR.BibliotecaOSPasta.Objetos.Revista;
 
 public class LeituraEscritaItens {
+    
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+    
     // SALVAR LISTA LIVROS
     public static void salvarLivros() {
         //SALVAR LIVROS

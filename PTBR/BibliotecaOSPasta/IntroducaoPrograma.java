@@ -3,6 +3,14 @@ package PTBR.BibliotecaOSPasta;
 import static PTBR.BibliotecaOSPasta.InputHandler.verificarInt;
 
 public class IntroducaoPrograma {
+    
+    /*
+    =================================================
+    Github: delunatriestocode
+    Linkedin: in/gabrielsilveiradeluna
+    =================================================
+    */
+    
     public static void introducaoBibliotecaOS() {
         System.out.println("\n============================\n\tBibliotecaOS\n\t    v1.0\n============================");
         // OPÇÕES E INPUT
