@@ -1,16 +1,11 @@
 package PTBR.BibliotecaOSPasta;
 
 import static PTBR.BibliotecaOSPasta.InputHandler.verificarInt;
-import static PTBR.BibliotecaOSPasta.InputHandler.verificarString;
-import java.util.ArrayList;
-
 import PTBR.BibliotecaOSPasta.Objetos.Artigo;
 import PTBR.BibliotecaOSPasta.Objetos.CD;
 import PTBR.BibliotecaOSPasta.Objetos.DVD;
 import PTBR.BibliotecaOSPasta.Objetos.Livro;
 import PTBR.BibliotecaOSPasta.Objetos.Revista;
-
-import static PTBR.BibliotecaOSPasta.Esperar.esperar;
 
 public class FiltrarItens {
 
