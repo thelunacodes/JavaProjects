@@ -10,8 +10,8 @@ public class Revista extends Livro {
     */
     private String ISSN ;
 
-    public Revista (String nome, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira, String ISSN) {
-        super(nome, autor, editora, CDD, ISBN, edicao, anoPublicacao, secao, prateleira);
+    public Revista (int id, String nome, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira, String ISSN) {
+        super(id, nome, autor, editora, CDD, ISBN, edicao, anoPublicacao, secao, prateleira);
         this.ISSN = ISSN;
     }
         //GETTERS

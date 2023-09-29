@@ -10,9 +10,10 @@ public class Artigo {
     */
 
     private String DOI, chave, tema, autor, instituto;
-    private int ano;
+    private int id, ano;
 
-    public Artigo (String DOI, String chave, String tema, String autor, int ano, String instituto) {
+    public Artigo (int id, String DOI, String chave, String tema, String autor, int ano, String instituto) {
+        this.id = id;
         this.DOI = DOI;
         this.chave = chave;
         this.tema = tema;
@@ -21,6 +22,9 @@ public class Artigo {
         this.instituto = instituto;
     }
     //GETTERS
+    public int getId() {
+        return id;
+    }
     public String getDOI() {
         return DOI;
     }

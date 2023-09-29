@@ -10,9 +10,10 @@ public class Livro {
     */
 
     private String nome, autor, editora, CDD, ISBN, secao;
-    private int edicao, anoPublicacao, prateleira;
+    private int id, edicao, anoPublicacao, prateleira;
     
-    public Livro(String nome, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira) {
+    public Livro(int id, String nome, String autor, String editora, String CDD, String ISBN, int edicao, int anoPublicacao, String secao, int prateleira) {
+        this.id = id;
         this.nome = nome;
         this.autor = autor;
         this.editora = editora;
@@ -24,6 +25,9 @@ public class Livro {
         this.prateleira = prateleira;
     }
     //GETTERS
+    public int getId() {
+        return id;
+    }
     public String getNome() {
         return nome;
     }

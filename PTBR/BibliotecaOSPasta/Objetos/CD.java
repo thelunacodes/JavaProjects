@@ -10,9 +10,10 @@ public class CD {
     */
 
     private String artistaCompositor, gravadora, album, UPC;
-    private int ano;
+    private int id, ano;
     
-    public CD (String artistaCompositor, String gravadora, String album, int ano, String UPC) {
+    public CD (int id, String artistaCompositor, String gravadora, String album, int ano, String UPC) {
+        this.id = id;
         this.artistaCompositor = artistaCompositor;
         this.gravadora = gravadora;
         this.album = album;
@@ -20,6 +21,9 @@ public class CD {
         this.UPC = UPC;
     }
     //GETTERS
+    public int getId() {
+        return id;
+    }
     public String getArtistaCompositor() {
         return artistaCompositor;
     }

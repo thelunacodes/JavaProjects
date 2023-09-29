@@ -10,9 +10,10 @@ public class DVD {
     */
 
     private String nome, regiao, distribuidora, duracao, sinopse, bonus, genero, UPC;
-    private int ano;
+    private int id, ano;
     
-    public DVD(String nome, String regiao, String distribuidora, String duracao, String sinopse, String bonus, int ano, String genero, String UPC) {
+    public DVD(int id, String nome, String regiao, String distribuidora, String duracao, String sinopse, String bonus, int ano, String genero, String UPC) {
+        this.id = id;
         this.nome = nome;
         this.regiao = regiao;
         this.distribuidora = distribuidora;
@@ -24,6 +25,9 @@ public class DVD {
         this.UPC = UPC;
     }
     //GETTERS
+    public int getId() {
+        return id;
+    }
     public String getNome() {
         return nome;
     }
@@ -54,5 +58,29 @@ public class DVD {
     //SETTERS
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    public void setRegiao(String regiao) {
+        this.regiao = regiao;
+    }
+    public void setDistribuidora(String distribuidora) {
+        this.distribuidora = distribuidora;
+    }
+    public void setDuracao(String duracao) {
+        this.duracao = duracao;
+    }
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
+    }
+    public void setBonus(String bonus) {
+        this.bonus = bonus;
+    }
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    public void setUPC(String UPC) {
+        this.UPC = UPC;
     }
 }
