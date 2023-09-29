@@ -43,29 +43,28 @@ public class BibliotecaOS {
     */
 
     // ATRIBUTOS GERAIS
-    static Scanner scanner = new Scanner(System.in);
-    static String nome = "", autor = "", editora = "", CDD = "", ISBN = "", secao = "", DOI = "", chave = "", tema = "", instituto = "", artistaCompositor = "", gravadora = "", album = "", UPC = "", regiao = "", distribuidora = "", duracao = "", sinopse = "", bonus = "", genero = "";
-    static String ISSN = "";
-    static int id = 0, edicao = 0, anoPublicacao = 0, prateleira = 0, opcao0 = 0, opcao1 = 0, opcao2 = 0, opcao2_bL = 0, opcao2_bR = 0, opcao2_bA = 0, opcao2_bC = 0, opcao2_bD = 0, opcao3 = 0, opcao3_bL = 0, opcao3_bR = 0, opcao3_bA = 0, opcao3_bC = 0, opcao3_bD = 0;
-    static ArrayList<Livro> listaLivros = new ArrayList<Livro>();
-    static ArrayList<Revista> listaRevistas = new ArrayList<Revista>();
-    static ArrayList<Artigo> listaArtigos = new ArrayList<Artigo>();
-    static ArrayList<CD> listaCDs = new ArrayList<CD>();
-    static ArrayList<DVD> listaDVDs = new ArrayList<DVD>();
+    public static Scanner scanner = new Scanner(System.in);
+    public static String nome = "", autor = "", editora = "", CDD = "", ISBN = "", secao = "", DOI = "", chave = "", tema = "", instituto = "", artistaCompositor = "", gravadora = "", album = "", UPC = "", regiao = "", distribuidora = "", duracao = "", sinopse = "", bonus = "", genero = "";
+    public static String ISSN = "";
+    public static int id = 0, edicao = 0, anoPublicacao = 0, prateleira = 0, opcao0 = 0, opcao1 = 0, opcao2 = 0, opcao2_bL = 0, opcao2_bR = 0, opcao2_bA = 0, opcao2_bC = 0, opcao2_bD = 0, opcao3 = 0, opcao3_bL = 0, opcao3_bR = 0, opcao3_bA = 0, opcao3_bC = 0, opcao3_bD = 0;
+    public static ArrayList<Livro> listaLivros = new ArrayList<Livro>();
+    public static ArrayList<Revista> listaRevistas = new ArrayList<Revista>();
+    public static ArrayList<Artigo> listaArtigos = new ArrayList<Artigo>();
+    public static ArrayList<CD> listaCDs = new ArrayList<CD>();
+    public static ArrayList<DVD> listaDVDs = new ArrayList<DVD>();
     // ERROS
-    static String nenhumItemEncontradoString = "ERRO: Nenhum item encontrado!";
-    static String opcaoInvalidaString = "ERRO: Opção inválida!";
-    static String listaCheiaString = "ERRO: A lista está cheia!";
-    static String listaVaziaString = "ERRO: A lista está vazia!";
+    public static String nenhumItemEncontradoString = "ERRO: Nenhum item encontrado!";
+    public static String opcaoInvalidaString = "ERRO: Opção inválida!";
+    public static String listaCheiaString = "ERRO: A lista está cheia!";
+    public static String listaVaziaString = "ERRO: A lista está vazia!";
     // CAMINHO DOS ARQUIVOS
-    static String caminhoDesktop = System.getProperty("user.home") + File.separator +"Desktop";
-    static String pastaArquivosBiblioteca = caminhoDesktop + "\\BibliotecaOSFiles";
-    static Path caminhoLivro = Paths.get(pastaArquivosBiblioteca + "\\arquivoLivros.txt");
-    static Path caminhoRevista = Paths.get(pastaArquivosBiblioteca + "\\arquivoRevistas.txt");
-    static Path caminhoArtigo = Paths.get(pastaArquivosBiblioteca + "\\arquivoArtigos.txt");
-    static Path caminhoCD = Paths.get(pastaArquivosBiblioteca + "\\arquivoCDs.txt");
-    static Path caminhoDVD = Paths.get(pastaArquivosBiblioteca + "\\arquivoDVDs.txt");
-
+    public static String caminhoDesktop = System.getProperty("user.home") + File.separator +"Desktop";
+    public static String pastaArquivosBiblioteca = caminhoDesktop + "\\BibliotecaOSFiles";
+    public static Path caminhoLivro = Paths.get(pastaArquivosBiblioteca + "\\arquivoLivros.txt");
+    public static Path caminhoRevista = Paths.get(pastaArquivosBiblioteca + "\\arquivoRevistas.txt");
+    public static Path caminhoArtigo = Paths.get(pastaArquivosBiblioteca + "\\arquivoArtigos.txt");
+    public static Path caminhoCD = Paths.get(pastaArquivosBiblioteca + "\\arquivoCDs.txt");
+    public static Path caminhoDVD = Paths.get(pastaArquivosBiblioteca + "\\arquivoDVDs.txt");
 
     public static void main(String[] args) {
         // LER LISTA ARQUIVOS
